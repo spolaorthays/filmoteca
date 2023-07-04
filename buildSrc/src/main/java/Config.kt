@@ -6,7 +6,7 @@ object Config {
     const val versionsName = "1.0"
     const val applicationId = "br.com.spolaorthays.filmoteca"
     const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    const val jvmTarget = "1.8"
+    const val jvmTarget = 17
 
     //BuildTypes
     const val release = "release"
