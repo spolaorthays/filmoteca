@@ -1,31 +1,31 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id(Plugins.application)
+    id(Plugins.android)
 }
 
 android {
-    namespace = "br.com.spolaorthays.filmoteca"
-    compileSdkVersion(33)
+    namespace = Config.applicationId
+    compileSdkVersion(Config.compileVersion)
 
     defaultConfig {
-        applicationId = "br.com.spolaorthays.filmoteca"
-        minSdkVersion(21)
-        targetSdkVersion(33)
-        versionCode = 1
-        versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        applicationId = Config.applicationId
+        minSdkVersion(Config.minSdkVersion)
+        targetSdkVersion(Config.targetVersion)
+        versionCode = Config.versionCode
+        versionName = Config.versionsName
+        testInstrumentationRunner = Config.testInstrumentationRunner
     }
 
     buildTypes {
-        getByName("release") {
+        getByName(Config.release) {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile(Config.proguardtxt),
+                Config.proguardrules
             )
         }
-        getByName("debug") {
-            applicationIdSuffix = ".debug"
+        getByName(Config.debug) {
+            applicationIdSuffix = Config.dotDebug
             isDebuggable = true
         }
     }
@@ -35,7 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Config.jvmTarget
     }
 }
 
