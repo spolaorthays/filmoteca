@@ -6,4 +6,6 @@ object Versions {
     const val material = "1.3.0"
     const val constraintLayout = "1.1.3"
     const val jUnit = "4.12"
+
+    const val daggerVersion = "2.43.2"
 }

@@ -2,7 +2,6 @@ plugins {
     id(Plugins.application)
     id(Plugins.android)
     kotlin(Plugins.kapt)
-    id(Plugins.hilt)
 }
 
 android {
@@ -49,9 +48,22 @@ dependencies {
     implementation("com.google.android.material:material:1.5.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
 
-    // Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    // Dagger 2
+    implementation(Dependencies.Dagger.dagger)
+    implementation(Dependencies.Dagger.daggerAndroid)
+    kapt(Dependencies.Dagger.daggerCompiler)
+    kapt(Dependencies.Dagger.daggerAnnotationProcessor)
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:3.12.0")
+    implementation("com.squareup.retrofit2:adapter-rxjava:2.9.0")
+
+    // RxJava
+    implementation("io.reactivex.rxjava2:rxjava:2.2.9")
+    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
+    implementation("io.reactivex.rxjava2:rxkotlin:2.4.0")
 
     // Test
     testImplementation("junit:junit:4.13.2")
@@ -61,8 +73,4 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
-}
-
-hilt {
-    enableAggregatingTask = true
 }
