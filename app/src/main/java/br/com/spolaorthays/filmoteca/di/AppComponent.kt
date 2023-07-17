@@ -1,6 +1,7 @@
 package br.com.spolaorthays.filmoteca.di
 
 import android.app.Application
+import br.com.spolaorthays.filmoteca.network.di.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
