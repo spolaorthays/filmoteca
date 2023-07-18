@@ -8,4 +8,9 @@ object Versions {
     const val jUnit = "4.12"
 
     const val daggerVersion = "2.43.2"
+
+    const val rxjava = "2.2.9"
+    const val rxjavaAndroid = "2.1.1"
+    const val rxjavaKotlin = "2.4.0"
+    const val rxjavaAdapterJake = "1.0.0"
 }

@@ -9,6 +9,6 @@ interface MovieService {
     @GET
     fun getListMovies(): MovieResponse
 
-    @GET
+    @GET("/3/movie/now_playing")
     fun getNowPlayingMovies(): Single<NowPlaying>
 }

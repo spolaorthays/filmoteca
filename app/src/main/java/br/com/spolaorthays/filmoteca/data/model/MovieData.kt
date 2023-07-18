@@ -41,9 +41,14 @@ data class MovieDates(
     @Json(name = "minimum")
     val min: String
 )
+
+@JsonClass(generateAdapter = true)
 data class NowPlaying(
+    @Json(name = "dates")
     val dates: MovieDates,
+    @Json(name = "page")
     val page: Int,
+    @Json(name = "results")
     val results: List<Movie>
 )
 

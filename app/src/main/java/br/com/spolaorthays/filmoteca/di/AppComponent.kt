@@ -9,7 +9,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, NetworkModule::class])
+@Component(modules = [AndroidSupportInjectionModule::class, NetworkModule::class, MovieModule::class])
 interface AppComponent : AndroidInjector<FilmotecaApplication> {
     @Component.Factory
     interface Factory {
