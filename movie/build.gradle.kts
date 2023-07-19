@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.application)
+    id(Plugins.library)
     id(Plugins.android)
     kotlin(Plugins.kapt)
 }
@@ -8,36 +8,26 @@ android {
     namespace = Config.applicationId
     compileSdk = Config.compileVersion
 
-    viewBinding {
-        enable = true
-    }
-
     defaultConfig {
-        applicationId = Config.applicationId
         minSdk = Config.minSdkVersion
         targetSdk = Config.targetVersion
-        versionCode = Config.versionCode
-        versionName = Config.versionsName
+
         testInstrumentationRunner = Config.testInstrumentationRunner
+        consumerProguardFiles(Config.consumerrules)
     }
 
     buildTypes {
-        getByName(Config.release) {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile(Config.proguardtxt),
                 Config.proguardrules
             )
         }
-        getByName(Config.debug) {
-            applicationIdSuffix = Config.dotDebug
-            isDebuggable = true
-        }
     }
-
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlin {
         jvmToolchain(Config.jvmTarget)
@@ -76,8 +66,4 @@ dependencies {
     testImplementation(Dependencies.Tests.junit)
     androidTestImplementation(Dependencies.Tests.testJunit)
     androidTestImplementation(Dependencies.Tests.testEspresso)
-}
-
-kapt {
-    correctErrorTypes = true
 }

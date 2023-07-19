@@ -16,4 +16,5 @@ object Config {
     //Proguard
     const val proguardtxt = "proguard-android-optimize.txt"
     const val proguardrules = "proguard-rules.pro"
+    const val consumerrules = "consumer-rules.pro"
 }
