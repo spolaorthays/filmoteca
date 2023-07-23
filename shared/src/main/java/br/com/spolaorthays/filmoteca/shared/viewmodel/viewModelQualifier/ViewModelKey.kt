@@ -1,4 +1,4 @@
-package br.com.spolaorthays.filmoteca.di.viewModelQualifier
+package br.com.spolaorthays.filmoteca.shared.viewmodel.viewModelQualifier
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

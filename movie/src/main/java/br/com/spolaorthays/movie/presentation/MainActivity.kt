@@ -1,8 +1,7 @@
-package br.com.spolaorthays.filmoteca.presentation
+package br.com.spolaorthays.movie.presentation
 
 import android.os.Bundle
 import br.com.spolaorthays.filmoteca.databinding.ActivityMainBinding
-import br.com.spolaorthays.movie.presentation.MovieViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -12,7 +11,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var movieViewModel: MovieViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,7 +24,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private fun provideTitleFromAPI() {
         movieViewModel.title.observe(this) {
-            binding.textWelcome.text = it
+            binding.titleMovie.text = it
         }
     }
 }

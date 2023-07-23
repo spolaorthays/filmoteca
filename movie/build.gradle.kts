@@ -8,6 +8,10 @@ android {
     namespace = Config.applicationId
     compileSdk = Config.compileVersion
 
+    viewBinding {
+        enable = true
+    }
+
     defaultConfig {
         minSdk = Config.minSdkVersion
         targetSdk = Config.targetVersion
@@ -26,8 +30,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
         jvmToolchain(Config.jvmTarget)
@@ -35,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation(project(Dependencies.Modules.shared))
 
     // General
     implementation(Dependencies.Android.androidKtx)

@@ -1,4 +1,4 @@
-package br.com.spolaorthays.filmoteca.network.interceptor
+package br.com.spolaorthays.filmoteca.shared.network.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

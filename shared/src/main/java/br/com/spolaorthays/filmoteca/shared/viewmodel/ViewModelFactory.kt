@@ -1,4 +1,4 @@
-package br.com.spolaorthays.filmoteca.di
+package br.com.spolaorthays.filmoteca.shared.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

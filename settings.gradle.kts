@@ -16,5 +16,6 @@ dependencyResolutionManagement {
 rootProject.name = "Filmoteca"
 include(
     ":app",
-    ":movie"
+    ":movie",
+    ":shared"
 )

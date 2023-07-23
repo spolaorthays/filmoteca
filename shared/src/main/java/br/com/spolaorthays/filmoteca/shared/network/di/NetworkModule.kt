@@ -1,7 +1,7 @@
-package br.com.spolaorthays.filmoteca.network.di
+package br.com.spolaorthays.filmoteca.shared.network.di
 
-import br.com.spolaorthays.filmoteca.network.interceptor.MovieAcceptInterceptor
-import br.com.spolaorthays.filmoteca.network.interceptor.MovieAuthInterceptor
+import br.com.spolaorthays.filmoteca.shared.network.interceptor.MovieAcceptInterceptor
+import br.com.spolaorthays.filmoteca.shared.network.interceptor.MovieAuthInterceptor
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -27,7 +27,7 @@ object NetworkModule {
     fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(MovieAcceptInterceptor())
-            .addInterceptor(MovieAuthInterceptor()) //--> TODO só está funcionando com a api key
+            .addInterceptor(MovieAuthInterceptor())
             .addInterceptor(httpLoggingInterceptor)
             .build()
     }

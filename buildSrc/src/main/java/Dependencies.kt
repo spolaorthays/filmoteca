@@ -2,6 +2,7 @@ object Dependencies {
 
     object Modules {
         const val movie = ":movie"
+        const val shared = ":shared"
     }
 
     object Android {

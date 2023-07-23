@@ -1,10 +1,11 @@
 package br.com.spolaorthays.movie.di
 
 import androidx.lifecycle.ViewModel
-import br.com.spolaorthays.filmoteca.di.viewModelQualifier.ViewModelKey
+import br.com.spolaorthays.filmoteca.shared.viewmodel.viewModelQualifier.ViewModelKey
 import br.com.spolaorthays.movie.data.MovieRepository
 import br.com.spolaorthays.movie.data.MovieRepositoryImpl
 import br.com.spolaorthays.movie.data.remote.MovieService
+import br.com.spolaorthays.movie.presentation.MainActivity
 import br.com.spolaorthays.movie.presentation.MovieViewModel
 import dagger.Binds
 import dagger.Module
