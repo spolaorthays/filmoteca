@@ -1,4 +1,4 @@
-package br.com.spolaorthays.filmoteca.data.model
+package br.com.spolaorthays.movie.data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

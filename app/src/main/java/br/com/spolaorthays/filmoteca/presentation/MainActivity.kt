@@ -1,11 +1,9 @@
-package br.com.spolaorthays.filmoteca
+package br.com.spolaorthays.filmoteca.presentation
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import br.com.spolaorthays.filmoteca.databinding.ActivityMainBinding
-import br.com.spolaorthays.filmoteca.presentation.MovieViewModel
+import br.com.spolaorthays.movie.presentation.MovieViewModel
 import dagger.android.support.DaggerAppCompatActivity
-import io.reactivex.observers.SafeObserver
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -23,13 +21,12 @@ class MainActivity : DaggerAppCompatActivity() {
 
         movieViewModel.getMovieTitle()
 
-        //binding.textWelcome.text = movieViewModel.title.value
-        test()
+        provideTitleFromAPI()
     }
 
-    private fun test() {
-        movieViewModel.title.observe(this, Observer {
+    private fun provideTitleFromAPI() {
+        movieViewModel.title.observe(this) {
             binding.textWelcome.text = it
-        })
+        }
     }
 }

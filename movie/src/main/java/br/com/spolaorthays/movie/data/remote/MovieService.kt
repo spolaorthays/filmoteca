@@ -1,7 +1,7 @@
-package br.com.spolaorthays.filmoteca.data
+package br.com.spolaorthays.movie.data.remote
 
-import br.com.spolaorthays.filmoteca.data.model.MovieResponse
-import br.com.spolaorthays.filmoteca.data.model.NowPlaying
+import br.com.spolaorthays.movie.data.model.MovieResponse
+import br.com.spolaorthays.movie.data.model.NowPlaying
 import io.reactivex.Single
 import retrofit2.http.GET
 

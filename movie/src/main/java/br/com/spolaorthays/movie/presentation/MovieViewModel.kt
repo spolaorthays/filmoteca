@@ -1,8 +1,8 @@
-package br.com.spolaorthays.filmoteca.presentation
+package br.com.spolaorthays.movie.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.spolaorthays.filmoteca.data.MovieRepository
+import br.com.spolaorthays.movie.data.MovieRepository
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers

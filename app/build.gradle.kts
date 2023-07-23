@@ -46,6 +46,8 @@ android {
 
 dependencies {
 
+    implementation(project(Dependencies.Modules.movie))
+
     // General
     implementation(Dependencies.Android.androidKtx)
     implementation(Dependencies.Android.androidAppCompat)

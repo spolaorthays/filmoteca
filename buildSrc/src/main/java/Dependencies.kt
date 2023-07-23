@@ -1,5 +1,9 @@
 object Dependencies {
 
+    object Modules {
+        const val movie = ":movie"
+    }
+
     object Android {
         const val androidKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         const val androidAppCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
