@@ -27,4 +27,7 @@ object Versions {
     const val retrofit = "2.9.0"
     const val moshi = "1.14.0"
     const val loggingInterceptor = "3.12.0"
+
+    // Picasso
+    const val picasso = "2.8"
 }

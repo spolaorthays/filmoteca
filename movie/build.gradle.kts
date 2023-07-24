@@ -54,6 +54,9 @@ dependencies {
     kapt(Dependencies.Dagger.daggerCompiler)
     kapt(Dependencies.Dagger.daggerAnnotationProcessor)
 
+    // Picasso
+    implementation(Dependencies.Picasso.picasso)
+
     // Retrofit-Moshi
     implementation(Dependencies.Retrofit.retrofit)
     implementation(Dependencies.Retrofit.retrofitAdapterRx)

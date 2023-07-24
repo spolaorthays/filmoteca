@@ -23,6 +23,10 @@ object Dependencies {
             "com.google.dagger:dagger-android-processor:${Versions.daggerVersion}"
     }
 
+    object Picasso {
+        const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
+    }
+
     object Retrofit {
         const val retrofit ="com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val retrofitAdapterRx ="com.squareup.retrofit2:adapter-rxjava:${Versions.retrofit}"
