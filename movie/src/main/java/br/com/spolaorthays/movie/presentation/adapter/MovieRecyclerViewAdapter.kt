@@ -24,6 +24,10 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) : RecyclerView.A
         holder.bind(movie)
     }
 
+    override fun getItemId(position: Int) = position.toLong()
+
+    override fun getItemViewType(position: Int) = position
+
     inner class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(movie: Movie) {
             binding.title.text = movie.movieTitle
