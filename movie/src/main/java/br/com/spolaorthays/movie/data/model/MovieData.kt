@@ -35,6 +35,20 @@ val json = "{\n" +
         "}"
 
 @JsonClass(generateAdapter = true)
+data class MovieResponse(
+    @Json(name = "dates")
+    val dates: MovieDates,
+    @Json(name = "page")
+    val page: Int,
+    @Json(name = "results")
+    val results: List<Movie>,
+    @Json(name = "total_pages")
+    val totalPages: Int,
+    @Json(name = "total_results")
+    val totalResults: Int
+)
+
+@JsonClass(generateAdapter = true)
 data class MovieDates(
     @Json(name = "maximum")
     val max: String,
@@ -42,25 +56,6 @@ data class MovieDates(
     val min: String
 )
 
-@JsonClass(generateAdapter = true)
-data class NowPlaying(
-    @Json(name = "dates")
-    val dates: MovieDates,
-    @Json(name = "page")
-    val page: Int,
-    @Json(name = "results")
-    val results: List<Movie>
-)
-
-@JsonClass(generateAdapter = true)
-data class MovieResponse(
-    val page: Int,
-    val results: List<Movie>,
-    @Json(name = "total_pages")
-    val totalPages: Int,
-    @Json(name = "total_results")
-    val totalResults: Int
-)
 @JsonClass(generateAdapter = true)
 data class Movie(
     @Json(name = "adult")

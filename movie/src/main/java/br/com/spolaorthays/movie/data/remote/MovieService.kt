@@ -1,14 +1,14 @@
 package br.com.spolaorthays.movie.data.remote
 
 import br.com.spolaorthays.movie.data.model.MovieResponse
-import br.com.spolaorthays.movie.data.model.NowPlaying
 import io.reactivex.Single
 import retrofit2.http.GET
 
+internal const val API_VERSION = "/3/"
 interface MovieService {
-    @GET
-    fun getListMovies(): MovieResponse
+    @GET("${API_VERSION}movie/popular")
+    fun getPopularMovies(): Single<MovieResponse>
 
-    @GET("/3/movie/now_playing")
-    fun getNowPlayingMovies(): Single<NowPlaying>
+    @GET("${API_VERSION}movie/now_playing")
+    fun getNowPlayingMovies(): Single<MovieResponse>
 }
