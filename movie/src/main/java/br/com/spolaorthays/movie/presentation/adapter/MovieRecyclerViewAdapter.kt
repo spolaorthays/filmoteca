@@ -8,6 +8,8 @@ import br.com.spolaorthays.filmoteca.databinding.MovieContentItemBinding
 import br.com.spolaorthays.movie.data.model.Movie
 import com.squareup.picasso.Picasso
 
+internal const val BASE_IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
+
 class MovieRecyclerViewAdapter(private var movies: List<Movie>) : RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder>() {
 
     private lateinit var binding: MovieContentItemBinding
@@ -33,12 +35,9 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) : RecyclerView.A
             binding.title.text = movie.movieTitle
             binding.grade.text = movie.voteAverage.toString()
             Picasso.get()
-                .load("https://image.tmdb.org/t/p/original/${movie.posterImagePath}")
+                .load("$BASE_IMAGE_LINK${movie.posterImagePath}")
                 .resize(400, 600)
                 .into(binding.posterImageView)
-
-            //TODO Para trazer a imagem devo utilizar o filme da seguinte forma:
-            //https://image.tmdb.org/t/p/original/[poster_path]
         }
     }
 }

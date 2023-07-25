@@ -27,10 +27,6 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun observerLiveDatas() {
-        movieViewModel.title.observe(this) {
-            binding.titleMovie.text = it
-        }
-
         movieViewModel.movieList.observe(this) {
             if (it.isNullOrEmpty().not()) {
                 setupRecycler(it)

@@ -14,7 +14,6 @@ class MovieViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
-    val title = MutableLiveData<String>()
     val movieList = MutableLiveData<List<Movie>>()
 
     fun getMovieTitle() {
@@ -24,7 +23,6 @@ class MovieViewModel @Inject constructor(
                 .observeOn(Schedulers.trampoline())
                 .subscribeBy(
                     onSuccess = {
-                        title.postValue(it.results[0].movieTitle)
                         movieList.postValue(it.results)
                     }, onError = {
                         it.message
