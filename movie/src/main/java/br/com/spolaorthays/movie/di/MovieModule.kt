@@ -5,6 +5,8 @@ import br.com.spolaorthays.filmoteca.shared.viewmodel.viewModelQualifier.ViewMod
 import br.com.spolaorthays.movie.data.MovieRepository
 import br.com.spolaorthays.movie.data.MovieRepositoryImpl
 import br.com.spolaorthays.movie.data.remote.MovieService
+import br.com.spolaorthays.movie.domain.MovieInteractor
+import br.com.spolaorthays.movie.domain.MovieInteractorImpl
 import br.com.spolaorthays.movie.presentation.MainActivity
 import br.com.spolaorthays.movie.presentation.MovieViewModel
 import dagger.Binds
@@ -31,8 +33,8 @@ abstract class MovieViewModelModule {
 
 @Module
 abstract class MovieContributesModule {
-//    @Binds
-//    abstract fun bindsMovieInteractor(repositoryImpl: MovieRepositoryImpl): MovieRepository
+    @Binds
+    abstract fun bindsMovieInteractor(interactorImpl: MovieInteractorImpl): MovieInteractor
 
     @Binds
     abstract fun bindsMovieRepository(repositoryImpl: MovieRepositoryImpl): MovieRepository

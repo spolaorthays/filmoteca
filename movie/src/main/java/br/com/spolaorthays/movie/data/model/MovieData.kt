@@ -37,7 +37,7 @@ val json = "{\n" +
 @JsonClass(generateAdapter = true)
 data class MovieResponse(
     @Json(name = "dates")
-    val dates: MovieDates,
+    val dates: MovieDates? = null,
     @Json(name = "page")
     val page: Int,
     @Json(name = "results")

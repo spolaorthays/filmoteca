@@ -21,7 +21,8 @@ class MainActivity : DaggerAppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        movieViewModel.getMovieTitle()
+        movieViewModel.getMovieSession()
+        movieViewModel.getPopularMovieSession()
 
         observerLiveDatas()
     }
@@ -32,10 +33,25 @@ class MainActivity : DaggerAppCompatActivity() {
                 setupRecycler(it)
             }
         }
+
+        movieViewModel.popularMovieList.observe(this) {
+            if (it.isNullOrEmpty().not()) {
+                setupRecycler2(it)
+            }
+        }
     }
 
+    //TODO Minimizar os códigos repetidos adaptando o código, posso fazer adicionando views ou usando um adapter que adiciona essas views
     private fun setupRecycler(movieList: List<Movie>) {
         binding.recyclerMovie.apply {
+            this.visibility = View.VISIBLE
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = MovieRecyclerViewAdapter(movieList)
+        }
+    }
+
+    private fun setupRecycler2(movieList: List<Movie>) {
+        binding.recyclerMovie2.apply {
             this.visibility = View.VISIBLE
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = MovieRecyclerViewAdapter(movieList)

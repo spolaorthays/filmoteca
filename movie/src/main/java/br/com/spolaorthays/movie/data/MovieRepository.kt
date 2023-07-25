@@ -7,11 +7,16 @@ import javax.inject.Inject
 
 interface MovieRepository {
     fun getNowPlaying(): Single<MovieResponse>
+    fun getPopulars(): Single<MovieResponse>
 }
 
 class MovieRepositoryImpl @Inject constructor(private val service: MovieService) :
     MovieRepository {
     override fun getNowPlaying(): Single<MovieResponse> {
         return service.getNowPlayingMovies()
+    }
+
+    override fun getPopulars(): Single<MovieResponse> {
+        return service.getPopularMovies()
     }
 }
