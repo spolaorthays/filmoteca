@@ -16,8 +16,9 @@ class MovieViewModel @Inject constructor(
     private val compositeDisposable = CompositeDisposable()
     val movieList = MutableLiveData<List<Movie>>()
     val popularMovieList = MutableLiveData<List<Movie>>()
+    val allMovies = MutableLiveData<List<Movie>>()
 
-    fun getMovieSession() {
+    fun getAllMovieSession() {
         compositeDisposable.add(
             interactor.getNowPlaying()
                 .subscribeOn(Schedulers.io())
@@ -25,13 +26,14 @@ class MovieViewModel @Inject constructor(
                 .subscribeBy(
                     onSuccess = {
                         movieList.postValue(it)
+                        getPopularMovieSession()
                     }, onError = {
                         it.message
                     })
         )
     }
 
-    fun getPopularMovieSession() {
+    private fun getPopularMovieSession() {
         compositeDisposable.add(
             interactor.getPopulars()
                 .subscribeOn(Schedulers.io())
