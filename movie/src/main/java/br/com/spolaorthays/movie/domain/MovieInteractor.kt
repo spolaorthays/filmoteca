@@ -6,20 +6,13 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 interface MovieInteractor {
-    fun getNowPlaying(): Single<List<Movie>>
-    fun getPopulars(): Single<List<Movie>>
+    fun getMovies(url: String): Single<List<Movie>>
 }
 
 class MovieInteractorImpl @Inject constructor(private val repository: MovieRepository) : MovieInteractor {
 
-    override fun getNowPlaying(): Single<List<Movie>> {
-        return repository.getNowPlaying().map {
-            it.results
-        }
-    }
-
-    override fun getPopulars(): Single<List<Movie>> {
-        return repository.getPopulars().map {
+    override fun getMovies(url: String): Single<List<Movie>> {
+        return repository.getAllMovies(url).map {
             it.results
         }
     }

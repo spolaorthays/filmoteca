@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.spolaorthays.movie.data.model.Movie
 import br.com.spolaorthays.movie.domain.MovieInteractor
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
@@ -14,33 +15,25 @@ class MovieViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
-    val movieList = MutableLiveData<List<Movie>>()
+    val nowPlayingList = MutableLiveData<List<Movie>>()
     val popularMovieList = MutableLiveData<List<Movie>>()
-    val allMovies = MutableLiveData<List<Movie>>()
+    val topRatedMovieList = MutableLiveData<List<Movie>>()
+    val upcomingMovieList = MutableLiveData<List<Movie>>()
+    val allMovies = MutableLiveData<MutableList<List<Movie>>>()
 
-    fun getAllMovieSession() {
+    fun getMovieSessions(url: String, position: Int) {
         compositeDisposable.add(
-            interactor.getNowPlaying()
+            interactor.getMovies(url)
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.trampoline())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                     onSuccess = {
-                        movieList.postValue(it)
-                        getPopularMovieSession()
-                    }, onError = {
-                        it.message
-                    })
-        )
-    }
-
-    private fun getPopularMovieSession() {
-        compositeDisposable.add(
-            interactor.getPopulars()
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.trampoline())
-                .subscribeBy(
-                    onSuccess = {
-                        popularMovieList.postValue(it)
+                        when(position) {
+                            0 -> nowPlayingList.postValue(it)
+                            1 -> popularMovieList.postValue(it)
+                            2 -> topRatedMovieList.postValue(it)
+                            3 -> upcomingMovieList.postValue(it)
+                        }
                     }, onError = {
                         it.message
                     })

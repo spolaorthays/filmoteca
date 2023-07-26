@@ -25,11 +25,18 @@ class MovieContainerAdapter(private val movieList: List<List<Movie>>) :
 
     override fun onBindViewHolder(holder: ContainerViewHolder, position: Int) {
         val list = movieList[position]
-        holder.bind(list)
+        holder.bind(list, position)
     }
 
     inner class ContainerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(list: List<Movie>) {
+        fun bind(list: List<Movie>, position: Int) {
+            binding.titleSession.text = when(position) {
+                0 -> "Mais vistos agora"
+                1 -> "Populares"
+                2 -> "Mais votados"
+                3 -> "Em breve"
+                else -> "Gerais"
+            }
             binding.recyclerContainer.apply {
                 layoutManager =
                     LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)

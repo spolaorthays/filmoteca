@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.spolaorthays.filmoteca.databinding.ActivityMainBinding
+import br.com.spolaorthays.movie.data.model.Endpoints.END_NOW_PLAYING
+import br.com.spolaorthays.movie.data.model.Endpoints.END_POPULARS
+import br.com.spolaorthays.movie.data.model.Endpoints.END_TOP_RATED
+import br.com.spolaorthays.movie.data.model.Endpoints.END_UPCOMING
 import br.com.spolaorthays.movie.data.model.Movie
 import br.com.spolaorthays.movie.presentation.adapter.MovieContainerAdapter
 import dagger.android.support.DaggerAppCompatActivity
@@ -12,6 +16,7 @@ import javax.inject.Inject
 class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val endpointList = listOf(END_NOW_PLAYING, END_POPULARS, END_TOP_RATED, END_UPCOMING)
 
     @Inject
     lateinit var movieViewModel: MovieViewModel
@@ -21,32 +26,38 @@ class MainActivity : DaggerAppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        movieViewModel.getAllMovieSession()
+        endpointList.forEachIndexed { index, endpoint ->
+            movieViewModel.getMovieSessions(endpoint, index)
+        }
 
         observerLiveDatas()
     }
 
     private fun observerLiveDatas() {
-        movieViewModel.movieList.observe(this) {
-            if (it.isNullOrEmpty().not()) {
-                //setupRecycler(it)
+        with(movieViewModel) {
+            upcomingMovieList.observe(this@MainActivity) {
+                allMovies.value =
+                    mutableListOf(
+                        nowPlayingList.value ?: listOf(),
+                        popularMovieList.value ?: listOf(),
+                        topRatedMovieList.value ?: listOf(),
+                        it
+                    )
             }
-        }
-
-        movieViewModel.popularMovieList.observe(this) {
-            if (it.isNullOrEmpty().not()) {
-                setupRecycler2(it)
+            allMovies.observe(this@MainActivity) { lists ->
+                if (lists.size == endpointList.size) {
+                    setupRecycler(lists)
+                }
             }
         }
     }
 
-    private fun setupRecycler2(movieList: List<Movie>) {
-        val dualList = listOf(movieViewModel.movieList.value ?: listOf(), movieViewModel.popularMovieList.value ?: listOf())
-
+    private fun setupRecycler(movieList: List<List<Movie>>) {
         binding.recyclerBase.apply {
             this.visibility = View.VISIBLE
-            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-            adapter = MovieContainerAdapter(dualList)
+            layoutManager =
+                LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+            adapter = MovieContainerAdapter(movieList)
         }
     }
 }
