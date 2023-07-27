@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.spolaorthays.filmoteca.R
 import br.com.spolaorthays.filmoteca.databinding.MovieContentItemBinding
+import br.com.spolaorthays.movie.data.model.Constants.HEIGHT_SIZE
+import br.com.spolaorthays.movie.data.model.Constants.WIDTH_SIZE
 import br.com.spolaorthays.movie.data.model.Movie
 import com.squareup.picasso.Picasso
 
@@ -37,7 +39,7 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) : RecyclerView.A
             binding.grade.text = movie.voteAverage.toString()
             Picasso.get()
                 .load("$BASE_IMAGE_LINK${movie.posterImagePath}")
-                .resize(400, 600)
+                .resize(WIDTH_SIZE, HEIGHT_SIZE)
                 .placeholder(R.drawable.animated_progress)
                 .into(binding.posterImageView)
         }

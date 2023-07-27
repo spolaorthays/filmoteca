@@ -14,4 +14,8 @@ object Constants {
     const val POPULARS = "Populares"
     const val TOP_RATED = "Mais votados"
     const val UPCOMING = "Em breve"
+
+    // Posters sizes
+    const val WIDTH_SIZE = 400
+    const val HEIGHT_SIZE = 600
 }
