@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.spolaorthays.filmoteca.databinding.MovieContainerItemBinding
 import br.com.spolaorthays.movie.data.model.Movie
 
-class MovieContainerAdapter(private val movieList: List<List<Movie>>) :
+class MovieContainerAdapter(private val movieList: List<List<Movie>>, private val sessionList: List<String>) :
     RecyclerView.Adapter<MovieContainerAdapter.ContainerViewHolder>() {
 
     private lateinit var binding: MovieContainerItemBinding
@@ -30,13 +30,7 @@ class MovieContainerAdapter(private val movieList: List<List<Movie>>) :
 
     inner class ContainerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(list: List<Movie>, position: Int) {
-            binding.titleSession.text = when(position) {
-                0 -> "Mais vistos agora"
-                1 -> "Populares"
-                2 -> "Mais votados"
-                3 -> "Em breve"
-                else -> "Gerais"
-            }
+            binding.titleSession.text = sessionList[position]
             binding.recyclerContainer.apply {
                 layoutManager =
                     LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)

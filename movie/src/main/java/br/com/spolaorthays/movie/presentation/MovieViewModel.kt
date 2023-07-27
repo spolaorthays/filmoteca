@@ -15,28 +15,28 @@ class MovieViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
-    val nowPlayingList = MutableLiveData<List<Movie>>()
-    val popularMovieList = MutableLiveData<List<Movie>>()
-    val topRatedMovieList = MutableLiveData<List<Movie>>()
-    val upcomingMovieList = MutableLiveData<List<Movie>>()
+    private val movies = mutableListOf<List<Movie>>()
     val allMovies = MutableLiveData<MutableList<List<Movie>>>()
+    val endpointList = MutableLiveData<List<String>>()
+    val sessionList = MutableLiveData<List<String>>()
 
-    fun getMovieSessions(url: String, position: Int) {
+    fun getMovieSessions(url: String) {
         compositeDisposable.add(
             interactor.getMovies(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                     onSuccess = {
-                        when(position) {
-                            0 -> nowPlayingList.postValue(it)
-                            1 -> popularMovieList.postValue(it)
-                            2 -> topRatedMovieList.postValue(it)
-                            3 -> upcomingMovieList.postValue(it)
-                        }
+                        movies.add(it)
+                        allMovies.postValue(movies)
                     }, onError = {
                         it.message
                     })
         )
+    }
+
+    fun getEndpointSession() {
+        endpointList.value = interactor.getEndpointList()
+        sessionList.value = interactor.getSessionList()
     }
 }
