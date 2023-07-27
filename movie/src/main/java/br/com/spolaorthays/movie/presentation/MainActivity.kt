@@ -36,7 +36,10 @@ class MainActivity : DaggerAppCompatActivity() {
 
             allMovies.observe(this@MainActivity) { lists ->
                 if (lists.size == endpointList.value?.size) {
+                    binding.loadingImage.visibility = View.GONE
                     setupRecycler(lists)
+                } else {
+                    binding.loadingImage.visibility = View.VISIBLE
                 }
             }
         }
