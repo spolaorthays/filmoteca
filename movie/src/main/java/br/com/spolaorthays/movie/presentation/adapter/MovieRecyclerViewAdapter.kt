@@ -8,7 +8,7 @@ import br.com.spolaorthays.filmoteca.R
 import br.com.spolaorthays.filmoteca.databinding.MovieContentItemBinding
 import br.com.spolaorthays.movie.data.model.Constants.HEIGHT_SIZE
 import br.com.spolaorthays.movie.data.model.Constants.WIDTH_SIZE
-import br.com.spolaorthays.movie.data.model.Movie
+import br.com.spolaorthays.filmoteca.shared.model.Movie
 import com.squareup.picasso.Picasso
 
 internal const val BASE_IMAGE_LINK = "https://image.tmdb.org/t/p/original/"

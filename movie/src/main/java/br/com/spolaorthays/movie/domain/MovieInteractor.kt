@@ -9,7 +9,7 @@ import br.com.spolaorthays.movie.data.model.Constants.NOW_PLAYING
 import br.com.spolaorthays.movie.data.model.Constants.POPULARS
 import br.com.spolaorthays.movie.data.model.Constants.TOP_RATED
 import br.com.spolaorthays.movie.data.model.Constants.UPCOMING
-import br.com.spolaorthays.movie.data.model.Movie
+import br.com.spolaorthays.filmoteca.shared.model.Movie
 import io.reactivex.Single
 import javax.inject.Inject
 

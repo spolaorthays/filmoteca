@@ -2,7 +2,7 @@ package br.com.spolaorthays.movie.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.spolaorthays.movie.data.model.Movie
+import br.com.spolaorthays.filmoteca.shared.model.Movie
 import br.com.spolaorthays.movie.domain.MovieInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

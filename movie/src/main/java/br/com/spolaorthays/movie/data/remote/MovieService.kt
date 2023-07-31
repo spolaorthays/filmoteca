@@ -1,6 +1,6 @@
 package br.com.spolaorthays.movie.data.remote
 
-import br.com.spolaorthays.movie.data.model.MovieResponse
+import br.com.spolaorthays.filmoteca.shared.model.MovieResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Url

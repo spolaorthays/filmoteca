@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.spolaorthays.filmoteca.databinding.MovieContainerItemBinding
-import br.com.spolaorthays.movie.data.model.Movie
+import br.com.spolaorthays.filmoteca.shared.model.Movie
 
 class MovieContainerAdapter(private val movieList: List<List<Movie>>, private val sessionList: List<String>) :
     RecyclerView.Adapter<MovieContainerAdapter.ContainerViewHolder>() {
