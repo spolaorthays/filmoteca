@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 //Now Playing Json
-val json = "{\n" +
+val jsonMovie = "{\n" +
         "   \"dates\":{\n" +
         "      \"maximum\":\"2023-07-15\",\n" +
         "      \"minimum\":\"2023-05-28\"\n" +
@@ -32,6 +32,93 @@ val json = "{\n" +
         "         \"vote_count\":1215\n" +
         "      }\n" +
         "   ]\n" +
+        "}"
+
+val jsonMovieDetail = "{\n" +
+        "   \"adult\":false,\n" +
+        "   \"backdrop_path\":\"/yF1eOkaYvwiORauRCPWznV9xVvi.jpg\",\n" +
+        "   \"belongs_to_collection\":null,\n" +
+        "   \"budget\":190000000,\n" +
+        "   \"genres\":[\n" +
+        "      {\n" +
+        "         \"id\":28,\n" +
+        "         \"name\":\"Ação\"\n" +
+        "      },\n" +
+        "      {\n" +
+        "         \"id\":12,\n" +
+        "         \"name\":\"Aventura\"\n" +
+        "      },\n" +
+        "      {\n" +
+        "         \"id\":878,\n" +
+        "         \"name\":\"Ficção científica\"\n" +
+        "      }\n" +
+        "   ],\n" +
+        "   \"homepage\":\"https://www.theflashfilme.com.br\",\n" +
+        "   \"id\":298618,\n" +
+        "   \"imdb_id\":\"tt0439572\",\n" +
+        "   \"original_language\":\"en\",\n" +
+        "   \"original_title\":\"The Flash\",\n" +
+        "   \"overview\":\"Quando Barry usa seus superpoderes para viajar no tempo e mudar os eventos do passado. Mas quando tenta salvar sua família e acaba, sem querer, alterando o futuro, Barry fica preso em uma realidade na qual o General Zod está de volta, ameaçando colocar o mundo em risco, e não há super-heróis a quem recorrer.\",\n" +
+        "   \"popularity\":5125.277,\n" +
+        "   \"poster_path\":\"/itYONYDHpJqTuu8BCXAtHxgpglq.jpg\",\n" +
+        "   \"production_companies\":[\n" +
+        "      {\n" +
+        "         \"id\":174,\n" +
+        "         \"logo_path\":\"/IuAlhI9eVC9Z8UQWOIDdWRKSEJ.png\",\n" +
+        "         \"name\":\"Warner Bros. Pictures\",\n" +
+        "         \"origin_country\":\"US\"\n" +
+        "      },\n" +
+        "      {\n" +
+        "         \"id\":152809,\n" +
+        "         \"logo_path\":null,\n" +
+        "         \"name\":\"Double Dream\",\n" +
+        "         \"origin_country\":\"US\"\n" +
+        "      },\n" +
+        "      {\n" +
+        "         \"id\":170335,\n" +
+        "         \"logo_path\":null,\n" +
+        "         \"name\":\"The Disco Factory\",\n" +
+        "         \"origin_country\":\"US\"\n" +
+        "      },\n" +
+        "      {\n" +
+        "         \"id\":128064,\n" +
+        "         \"logo_path\":\"/13F3Jf7EFAcREU0xzZqJnVnyGXu.png\",\n" +
+        "         \"name\":\"DC Films\",\n" +
+        "         \"origin_country\":\"US\"\n" +
+        "      }\n" +
+        "   ],\n" +
+        "   \"production_countries\":[\n" +
+        "      {\n" +
+        "         \"iso_3166_1\":\"US\",\n" +
+        "         \"name\":\"United States of America\"\n" +
+        "      }\n" +
+        "   ],\n" +
+        "   \"release_date\":\"2023-06-13\",\n" +
+        "   \"revenue\":267481043,\n" +
+        "   \"runtime\":144,\n" +
+        "   \"spoken_languages\":[\n" +
+        "      {\n" +
+        "         \"english_name\":\"English\",\n" +
+        "         \"iso_639_1\":\"en\",\n" +
+        "         \"name\":\"English\"\n" +
+        "      },\n" +
+        "      {\n" +
+        "         \"english_name\":\"Spanish\",\n" +
+        "         \"iso_639_1\":\"es\",\n" +
+        "         \"name\":\"Español\"\n" +
+        "      },\n" +
+        "      {\n" +
+        "         \"english_name\":\"Russian\",\n" +
+        "         \"iso_639_1\":\"ru\",\n" +
+        "         \"name\":\"Pусский\"\n" +
+        "      }\n" +
+        "   ],\n" +
+        "   \"status\":\"Released\",\n" +
+        "   \"tagline\":\"Os mundos colidem.\",\n" +
+        "   \"title\":\"The Flash\",\n" +
+        "   \"video\":false,\n" +
+        "   \"vote_average\":6.935,\n" +
+        "   \"vote_count\":1839\n" +
         "}"
 
 @JsonClass(generateAdapter = true)

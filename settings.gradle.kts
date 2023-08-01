@@ -17,5 +17,6 @@ rootProject.name = "Filmoteca"
 include(
     ":app",
     ":movie",
-    ":shared"
+    ":shared",
+    ":moviedetails"
 )
