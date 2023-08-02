@@ -1,8 +1,18 @@
 package br.com.spolaorthays.movie.presentation.adapter
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.content.Intent.ACTION_VIEW
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.content.Intent.FLAG_ACTIVITY_REQUIRE_NON_BROWSER
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import br.com.spolaorthays.filmoteca.R
 import br.com.spolaorthays.filmoteca.databinding.MovieContentItemBinding
@@ -13,12 +23,14 @@ import com.squareup.picasso.Picasso
 
 internal const val BASE_IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
 
-class MovieRecyclerViewAdapter(private var movies: List<Movie>) : RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder>() {
+class MovieRecyclerViewAdapter(private var movies: List<Movie>) :
+    RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder>() {
 
     private lateinit var binding: MovieContentItemBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        binding = MovieContentItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding =
+            MovieContentItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MovieViewHolder(binding.root)
     }
 
@@ -35,13 +47,39 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) : RecyclerView.A
 
     inner class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(movie: Movie) {
-            binding.title.text = movie.movieTitle
-            binding.grade.text = movie.voteAverage.toString()
-            Picasso.get()
-                .load("$BASE_IMAGE_LINK${movie.posterImagePath}")
-                .resize(WIDTH_SIZE, HEIGHT_SIZE)
-                .placeholder(R.drawable.animated_progress)
-                .into(binding.posterImageView)
+            with(binding) {
+                title.text = movie.movieTitle
+                grade.text = movie.voteAverage.toString()
+                cardView.setOnClickListener {
+                    val deeplink = "spolaorthays://details?id=${movie.movieId}"
+                    openDeeplink(deeplink, binding.root.context)
+//                    binding.root.context.startActivity(
+//                        Intent(Intent.ACTION_VIEW, Uri.parse(deeplink))
+////                            .apply {
+////                            data = Uri.parse(deeplink)
+////                        }
+//                    )
+                }
+                Picasso.get()
+                    .load("$BASE_IMAGE_LINK${movie.posterImagePath}")
+                    .resize(WIDTH_SIZE, HEIGHT_SIZE)
+                    .placeholder(R.drawable.animated_progress)
+                    .into(posterImageView)
+            }
+        }
+
+        private fun openDeeplink(url: String, context: Context) {
+            try {
+                val intent = Intent(ACTION_VIEW, Uri.parse(url)).apply {
+                    // The URL should either launch directly in a non-browser app
+                    // (if it’s the default), or in the disambiguation dialog
+                    //addCategory(CATEGORY_BROWSABLE)
+                    flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_REQUIRE_NON_BROWSER
+                }
+                context.startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                e.message
+            }
         }
     }
 }

@@ -7,7 +7,8 @@
     app:cardBackgroundColor="#0047AB"
     app:cardCornerRadius="16dp"
     app:cardUseCompatPadding="true"
-    app:cardElevation="8dp">
+    app:cardElevation="8dp"
+    android:id="@+id/cardView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -47,9 +48,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
             android:text="Nota:"
-            android:textStyle="bold"
             android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -59,21 +62,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/gradeLabel"
             app:layout_constraintTop_toBottomOf="@+id/title"
             tools:text="Nota text" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Detalhes"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/posterImageView"
-            app:layout_constraintStart_toStartOf="@+id/posterImageView"
-            app:layout_constraintTop_toBottomOf="@+id/gradeLabel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
