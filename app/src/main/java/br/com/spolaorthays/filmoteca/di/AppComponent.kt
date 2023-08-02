@@ -3,6 +3,7 @@ package br.com.spolaorthays.filmoteca.di
 import android.app.Application
 import br.com.spolaorthays.filmoteca.di.splash.SplashModule
 import br.com.spolaorthays.filmoteca.shared.network.di.NetworkModule
+import br.com.spolaorthays.filmoteca.shared.schedulers.di.AppSchedulerModule
 import br.com.spolaorthays.movie.di.MovieModule
 import dagger.BindsInstance
 import dagger.Component
@@ -16,7 +17,8 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         NetworkModule::class,
         MovieModule::class,
-        SplashModule::class
+        SplashModule::class,
+        AppSchedulerModule::class
     ]
 )
 interface AppComponent : AndroidInjector<FilmotecaApplication> {

@@ -148,7 +148,7 @@ data class Movie(
     @Json(name = "adult")
     val adult: Boolean,
     @Json(name = "backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
     @Json(name = "genre_ids")
     val genreIds: List<Int>,
     @Json(name = "id")
@@ -174,3 +174,72 @@ data class Movie(
     @Json(name = "vote_count")
     val voteCount: Int
 )
+
+@JsonClass(generateAdapter = true)
+data class MovieGenre(
+    @Json(name = "id")
+    val id: Int,
+    @Json(name = "name")
+    val name: String
+)
+
+@JsonClass(generateAdapter = true)
+data class MovieLanguage(
+    @Json(name = "english_name")
+    val englishName: String,
+    @Json(name = "iso_639_1")
+    val acronym: String,
+    @Json(name = "name")
+    val languageName: String
+)
+
+@JsonClass(generateAdapter = true)
+data class MovieDetail(
+    @Json(name = "adult")
+    val adult: Boolean,
+    @Json(name = "backdrop_path")
+    val backdropPath: String,
+    @Json(name = "belongs_to_collection")
+    val belongsToCollection: String?,
+    @Json(name = "budget")
+    val budget: Long,
+    @Json(name = "genres")
+    val genres: List<MovieGenre>,
+    @Json(name = "homepage")
+    val homepage: String,
+    @Json(name = "id")
+    val movieId: Int,
+    @Json(name = "imdb_id")
+    val imdbId: String,
+    @Json(name = "original_language")
+    val originalLanguage: String,
+    @Json(name = "original_title")
+    val originalTitle: String,
+    @Json(name = "overview")
+    val movieDescription:String,
+    @Json(name = "popularity")
+    val popularity: Float,
+    @Json(name = "poster_path")
+    val posterImagePath: String,
+    @Json(name = "release_date")
+    val releaseDate: String,
+    @Json(name = "revenue")
+    val revenue: Long,
+    @Json(name = "runtime")
+    val runtime: Long,
+    @Json(name = "spoken_languages")
+    val spokenLanguages: List<MovieLanguage>,
+    @Json(name = "status")
+    val movieStatus: String,
+    @Json(name = "tagline")
+    val tagline: String,
+    @Json(name = "title")
+    val movieTitle: String,
+    @Json(name = "video")
+    val hasVideo: Boolean,
+    @Json(name = "vote_average")
+    val voteAverage: Float,
+    @Json(name = "vote_count")
+    val voteCount: Int
+)
+
