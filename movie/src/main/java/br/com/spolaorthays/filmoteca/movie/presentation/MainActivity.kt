@@ -1,11 +1,11 @@
-package br.com.spolaorthays.movie.presentation
+package br.com.spolaorthays.filmoteca.movie.presentation
 
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.spolaorthays.filmoteca.databinding.ActivityMainBinding
 import br.com.spolaorthays.filmoteca.shared.model.Movie
-import br.com.spolaorthays.movie.presentation.adapter.MovieContainerAdapter
+import br.com.spolaorthays.filmoteca.movie.presentation.adapter.MovieContainerAdapter
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 

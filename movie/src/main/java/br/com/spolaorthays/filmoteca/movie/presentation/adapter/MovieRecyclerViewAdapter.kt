@@ -1,4 +1,4 @@
-package br.com.spolaorthays.movie.presentation.adapter
+package br.com.spolaorthays.filmoteca.movie.presentation.adapter
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -6,18 +6,15 @@ import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.Intent.FLAG_ACTIVITY_REQUIRE_NON_BROWSER
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import br.com.spolaorthays.filmoteca.R
 import br.com.spolaorthays.filmoteca.databinding.MovieContentItemBinding
-import br.com.spolaorthays.movie.data.model.Constants.HEIGHT_SIZE
-import br.com.spolaorthays.movie.data.model.Constants.WIDTH_SIZE
+import br.com.spolaorthays.filmoteca.movie.data.model.Constants.HEIGHT_SIZE
+import br.com.spolaorthays.filmoteca.movie.data.model.Constants.WIDTH_SIZE
 import br.com.spolaorthays.filmoteca.shared.model.Movie
 import com.squareup.picasso.Picasso
 
@@ -79,6 +76,7 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) :
                 context.startActivity(intent)
             } catch (e: ActivityNotFoundException) {
                 e.message
+                println(e.message)
             }
         }
     }

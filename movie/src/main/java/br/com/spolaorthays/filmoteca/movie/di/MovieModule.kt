@@ -1,14 +1,14 @@
-package br.com.spolaorthays.movie.di
+package br.com.spolaorthays.filmoteca.movie.di
 
 import androidx.lifecycle.ViewModel
 import br.com.spolaorthays.filmoteca.shared.viewmodel.viewModelQualifier.ViewModelKey
-import br.com.spolaorthays.movie.data.MovieRepository
-import br.com.spolaorthays.movie.data.MovieRepositoryImpl
-import br.com.spolaorthays.movie.data.remote.MovieService
-import br.com.spolaorthays.movie.domain.MovieInteractor
-import br.com.spolaorthays.movie.domain.MovieInteractorImpl
-import br.com.spolaorthays.movie.presentation.MainActivity
-import br.com.spolaorthays.movie.presentation.MovieViewModel
+import br.com.spolaorthays.filmoteca.movie.data.MovieRepository
+import br.com.spolaorthays.filmoteca.movie.data.MovieRepositoryImpl
+import br.com.spolaorthays.filmoteca.movie.data.remote.MovieService
+import br.com.spolaorthays.filmoteca.movie.domain.MovieInteractor
+import br.com.spolaorthays.filmoteca.movie.domain.MovieInteractorImpl
+import br.com.spolaorthays.filmoteca.movie.presentation.MainActivity
+import br.com.spolaorthays.filmoteca.movie.presentation.MovieViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

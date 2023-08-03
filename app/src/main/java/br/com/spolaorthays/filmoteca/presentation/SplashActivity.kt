@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import br.com.spolaorthays.filmoteca.databinding.ActivitySplashBinding
-import br.com.spolaorthays.movie.presentation.MainActivity
+import br.com.spolaorthays.filmoteca.movie.presentation.MainActivity
 import dagger.android.support.DaggerAppCompatActivity
 import java.util.Timer
 import java.util.TimerTask

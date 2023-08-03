@@ -1,7 +1,7 @@
-package br.com.spolaorthays.movie.data
+package br.com.spolaorthays.filmoteca.movie.data
 
 import br.com.spolaorthays.filmoteca.shared.model.MovieResponse
-import br.com.spolaorthays.movie.data.remote.MovieService
+import br.com.spolaorthays.filmoteca.movie.data.remote.MovieService
 import io.reactivex.Single
 import javax.inject.Inject
 

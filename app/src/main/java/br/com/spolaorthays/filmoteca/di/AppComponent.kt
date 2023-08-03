@@ -4,7 +4,7 @@ import android.app.Application
 import br.com.spolaorthays.filmoteca.di.splash.SplashModule
 import br.com.spolaorthays.filmoteca.shared.network.di.NetworkModule
 import br.com.spolaorthays.filmoteca.shared.schedulers.di.AppSchedulerModule
-import br.com.spolaorthays.movie.di.MovieModule
+import br.com.spolaorthays.filmoteca.movie.di.MovieModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

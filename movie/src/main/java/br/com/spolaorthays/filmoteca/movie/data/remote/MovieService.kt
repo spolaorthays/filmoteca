@@ -1,4 +1,4 @@
-package br.com.spolaorthays.movie.data.remote
+package br.com.spolaorthays.filmoteca.movie.data.remote
 
 import br.com.spolaorthays.filmoteca.shared.model.MovieResponse
 import io.reactivex.Single

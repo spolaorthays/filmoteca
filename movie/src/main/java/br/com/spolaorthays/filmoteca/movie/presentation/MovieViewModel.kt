@@ -1,10 +1,10 @@
-package br.com.spolaorthays.movie.presentation
+package br.com.spolaorthays.filmoteca.movie.presentation
 
 import androidx.lifecycle.MutableLiveData
 import br.com.spolaorthays.filmoteca.shared.model.Movie
 import br.com.spolaorthays.filmoteca.shared.schedulers.AppSchedulers
 import br.com.spolaorthays.filmoteca.shared.viewmodel.BaseViewModel
-import br.com.spolaorthays.movie.domain.MovieInteractor
+import br.com.spolaorthays.filmoteca.movie.domain.MovieInteractor
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject

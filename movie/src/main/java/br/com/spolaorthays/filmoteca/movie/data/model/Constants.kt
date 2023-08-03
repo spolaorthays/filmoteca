@@ -1,4 +1,4 @@
-package br.com.spolaorthays.movie.data.model
+package br.com.spolaorthays.filmoteca.movie.data.model
 
 object Constants {
 

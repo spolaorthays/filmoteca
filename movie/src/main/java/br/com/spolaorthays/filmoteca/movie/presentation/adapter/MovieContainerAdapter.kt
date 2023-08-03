@@ -1,4 +1,4 @@
-package br.com.spolaorthays.movie.presentation.adapter
+package br.com.spolaorthays.filmoteca.movie.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
