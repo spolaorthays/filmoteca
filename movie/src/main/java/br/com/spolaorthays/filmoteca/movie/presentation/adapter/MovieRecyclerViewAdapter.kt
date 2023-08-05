@@ -1,11 +1,7 @@
 package br.com.spolaorthays.filmoteca.movie.presentation.adapter
 
-import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.content.Intent.FLAG_ACTIVITY_REQUIRE_NON_BROWSER
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -48,8 +44,7 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) :
                 title.text = movie.movieTitle
                 grade.text = movie.voteAverage.toString()
                 cardView.setOnClickListener {
-                    //val deeplink = "teste://details?id=${movie.movieId}" //TODO usar esse quando terminar de montar a tela
-                    val deeplink = "thays://details"
+                    val deeplink = "thays://details?id=${movie.movieId}"
                     val intent = Intent(ACTION_VIEW, Uri.parse(deeplink))
                     it.context.startActivity(intent)
                 }
@@ -58,21 +53,6 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) :
                     .resize(WIDTH_SIZE, HEIGHT_SIZE)
                     .placeholder(R.drawable.animated_progress)
                     .into(posterImageView)
-            }
-        }
-
-        private fun openDeeplink(url: String, context: Context) {
-            try {
-                val intent = Intent(ACTION_VIEW, Uri.parse(url)).apply {
-                    // The URL should either launch directly in a non-browser app
-                    // (if it’s the default), or in the disambiguation dialog
-                    //addCategory(CATEGORY_BROWSABLE)
-                    flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_REQUIRE_NON_BROWSER
-                }
-                context.startActivity(intent)
-            } catch (e: ActivityNotFoundException) {
-                e.message
-                println(e.message)
             }
         }
     }

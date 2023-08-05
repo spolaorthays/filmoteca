@@ -6,16 +6,20 @@ import br.com.spolaorthays.filmoteca.moviedetails.data.MovieDetailRepositoryImpl
 import br.com.spolaorthays.filmoteca.moviedetails.data.MovieDetailService
 import br.com.spolaorthays.filmoteca.moviedetails.domain.MovieDetailInteractor
 import br.com.spolaorthays.filmoteca.moviedetails.domain.MovieDetailInteractorImpl
+import br.com.spolaorthays.filmoteca.moviedetails.presentation.DetailActivity
 import br.com.spolaorthays.filmoteca.moviedetails.presentation.MovieDetailViewModel
 import br.com.spolaorthays.filmoteca.shared.viewmodel.viewModelQualifier.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import retrofit2.Retrofit
 
-@Module
+@Module(includes = [MovieDetailViewModelModule::class, MovieDetailsContributes::class])
 abstract class MovieDetailsModule {
+    @ContributesAndroidInjector
+    abstract fun provideDetailActivity(): DetailActivity
 }
 
 @Module
