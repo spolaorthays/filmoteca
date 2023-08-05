@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="br.com.spolaorthays.filmoteca">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries>
+        <package android:name="br.com.spolaorthays.filmoteca.debug" />
+        <package android:name="com.google.android.apps.nexuslauncher" />
+
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data
+                android:host="details"
+                android:scheme="thays" />
+        </intent>
+
+    </queries>
 
     <application
         android:name=".di.FilmotecaApplication"

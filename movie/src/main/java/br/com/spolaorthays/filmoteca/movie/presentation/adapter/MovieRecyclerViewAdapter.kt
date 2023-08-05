@@ -48,14 +48,10 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) :
                 title.text = movie.movieTitle
                 grade.text = movie.voteAverage.toString()
                 cardView.setOnClickListener {
-                    val deeplink = "spolaorthays://details?id=${movie.movieId}"
-                    openDeeplink(deeplink, binding.root.context)
-//                    binding.root.context.startActivity(
-//                        Intent(Intent.ACTION_VIEW, Uri.parse(deeplink))
-////                            .apply {
-////                            data = Uri.parse(deeplink)
-////                        }
-//                    )
+                    //val deeplink = "teste://details?id=${movie.movieId}" //TODO usar esse quando terminar de montar a tela
+                    val deeplink = "thays://details"
+                    val intent = Intent(ACTION_VIEW, Uri.parse(deeplink))
+                    it.context.startActivity(intent)
                 }
                 Picasso.get()
                     .load("$BASE_IMAGE_LINK${movie.posterImagePath}")

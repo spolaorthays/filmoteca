@@ -46,6 +46,7 @@ android {
 
 dependencies {
     implementation(project(Dependencies.Modules.movie))
+    implementation(project(Dependencies.Modules.movieDetails))
     implementation(project(Dependencies.Modules.shared))
 
     // General
