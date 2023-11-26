@@ -1,4 +1,4 @@
-package br.com.spolaorthays.filmoteca.movie.data.model
+package br.com.spolaorthays.filmoteca.shared.model
 
 object Constants {
 
@@ -18,4 +18,7 @@ object Constants {
     // Posters sizes
     const val WIDTH_SIZE = 400
     const val HEIGHT_SIZE = 600
+
+    // Base image url
+    const val BASE_IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
 }

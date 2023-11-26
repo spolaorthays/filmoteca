@@ -9,12 +9,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.spolaorthays.filmoteca.R
 import br.com.spolaorthays.filmoteca.databinding.MovieContentItemBinding
-import br.com.spolaorthays.filmoteca.movie.data.model.Constants.HEIGHT_SIZE
-import br.com.spolaorthays.filmoteca.movie.data.model.Constants.WIDTH_SIZE
+import br.com.spolaorthays.filmoteca.shared.model.Constants.BASE_IMAGE_LINK
+import br.com.spolaorthays.filmoteca.shared.model.Constants.HEIGHT_SIZE
+import br.com.spolaorthays.filmoteca.shared.model.Constants.WIDTH_SIZE
 import br.com.spolaorthays.filmoteca.shared.model.Movie
 import com.squareup.picasso.Picasso
-
-internal const val BASE_IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
 
 class MovieRecyclerViewAdapter(private var movies: List<Movie>) :
     RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder>() {

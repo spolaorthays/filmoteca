@@ -158,7 +158,7 @@ data class Movie(
     @Json(name = "original_title")
     val originalTitle: String,
     @Json(name = "overview")
-    val movieDescription:String,
+    val movieDescription: String,
     @Json(name = "popularity")
     val popularity: Float,
     @Json(name = "poster_path")
@@ -193,6 +193,17 @@ data class MovieLanguage(
     val languageName: String
 )
 
+data class MovieBelongsCollection(
+    @Json(name = "id")
+    val id: Int,
+    @Json(name = "name")
+    val name: String,
+    @Json(name = "poster_path")
+    val posterPath: String,
+    @Json(name = "backdrop_path")
+    val backdropPath: String
+)
+
 @JsonClass(generateAdapter = true)
 data class MovieDetail(
     @Json(name = "adult")
@@ -200,7 +211,7 @@ data class MovieDetail(
     @Json(name = "backdrop_path")
     val backdropPath: String,
     @Json(name = "belongs_to_collection")
-    val belongsToCollection: String?,
+    val belongsToCollection: MovieBelongsCollection?,
     @Json(name = "budget")
     val budget: Long,
     @Json(name = "genres")
@@ -216,7 +227,7 @@ data class MovieDetail(
     @Json(name = "original_title")
     val originalTitle: String,
     @Json(name = "overview")
-    val movieDescription:String,
+    val movieDescription: String,
     @Json(name = "popularity")
     val popularity: Float,
     @Json(name = "poster_path")

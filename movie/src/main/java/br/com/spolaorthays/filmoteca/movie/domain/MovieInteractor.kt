@@ -1,21 +1,20 @@
 package br.com.spolaorthays.filmoteca.movie.domain
 
 import br.com.spolaorthays.filmoteca.movie.data.MovieRepository
-import br.com.spolaorthays.filmoteca.movie.data.model.Constants.END_NOW_PLAYING
-import br.com.spolaorthays.filmoteca.movie.data.model.Constants.END_POPULARS
-import br.com.spolaorthays.filmoteca.movie.data.model.Constants.END_TOP_RATED
-import br.com.spolaorthays.filmoteca.movie.data.model.Constants.END_UPCOMING
-import br.com.spolaorthays.filmoteca.movie.data.model.Constants.NOW_PLAYING
-import br.com.spolaorthays.filmoteca.movie.data.model.Constants.POPULARS
-import br.com.spolaorthays.filmoteca.movie.data.model.Constants.TOP_RATED
-import br.com.spolaorthays.filmoteca.movie.data.model.Constants.UPCOMING
+import br.com.spolaorthays.filmoteca.shared.model.Constants.END_NOW_PLAYING
+import br.com.spolaorthays.filmoteca.shared.model.Constants.END_POPULARS
+import br.com.spolaorthays.filmoteca.shared.model.Constants.END_TOP_RATED
+import br.com.spolaorthays.filmoteca.shared.model.Constants.END_UPCOMING
+import br.com.spolaorthays.filmoteca.shared.model.Constants.NOW_PLAYING
+import br.com.spolaorthays.filmoteca.shared.model.Constants.POPULARS
+import br.com.spolaorthays.filmoteca.shared.model.Constants.TOP_RATED
+import br.com.spolaorthays.filmoteca.shared.model.Constants.UPCOMING
 import br.com.spolaorthays.filmoteca.shared.model.Movie
 import io.reactivex.Single
 import javax.inject.Inject
 
 interface MovieInteractor {
     fun getMovies(url: String): Single<List<Movie>>
-
     fun getEndpointList(): List<String>
     fun getSessionList(): List<String>
 }
