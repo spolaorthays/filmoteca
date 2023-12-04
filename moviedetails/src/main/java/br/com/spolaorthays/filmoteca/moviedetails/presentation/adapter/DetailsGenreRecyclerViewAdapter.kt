@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.spolaorthays.filmoteca.R
-import br.com.spolaorthays.filmoteca.databinding.GenreContentItemBinding
+import br.com.spolaorthays.filmoteca.moviedetails.R
+import br.com.spolaorthays.filmoteca.moviedetails.databinding.GenreContentItemBinding
 import br.com.spolaorthays.filmoteca.shared.model.MovieGenre
 import com.squareup.picasso.Picasso
 

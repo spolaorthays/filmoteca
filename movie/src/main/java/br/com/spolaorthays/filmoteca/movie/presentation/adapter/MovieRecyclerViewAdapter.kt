@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.spolaorthays.filmoteca.R
-import br.com.spolaorthays.filmoteca.databinding.MovieContentItemBinding
+import br.com.spolaorthays.filmoteca.movie.R
+import br.com.spolaorthays.filmoteca.movie.databinding.MovieContentItemBinding
 import br.com.spolaorthays.filmoteca.shared.model.Constants.BASE_IMAGE_LINK
 import br.com.spolaorthays.filmoteca.shared.model.Constants.HEIGHT_SIZE
 import br.com.spolaorthays.filmoteca.shared.model.Constants.WIDTH_SIZE

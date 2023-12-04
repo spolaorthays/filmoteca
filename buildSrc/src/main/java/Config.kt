@@ -5,6 +5,9 @@ object Config {
     const val versionCode = 1
     const val versionsName = "1.0"
     const val applicationId = "br.com.spolaorthays.filmoteca"
+    const val applicationShared = "br.com.spolaorthays.filmoteca.shared"
+    const val applicationMovie = "br.com.spolaorthays.filmoteca.movie"
+    const val applicationDetails = "br.com.spolaorthays.filmoteca.moviedetails"
     const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     const val jvmTarget = 17
 

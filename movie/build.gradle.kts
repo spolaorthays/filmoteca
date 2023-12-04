@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = Config.applicationId
+    namespace = Config.applicationMovie
     compileSdk = Config.compileVersion
 
     viewBinding {

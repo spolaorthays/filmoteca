@@ -3,11 +3,9 @@ package br.com.spolaorthays.filmoteca.moviedetails.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.spolaorthays.filmoteca.R
-import br.com.spolaorthays.filmoteca.databinding.ActivityDetailBinding
+import br.com.spolaorthays.filmoteca.shared.R as Rshared
+import br.com.spolaorthays.filmoteca.moviedetails.databinding.ActivityDetailBinding
 import br.com.spolaorthays.filmoteca.moviedetails.presentation.adapter.DetailsGenreRecyclerViewAdapter
-import br.com.spolaorthays.filmoteca.shared.model.Constants
 import br.com.spolaorthays.filmoteca.shared.model.Constants.BASE_IMAGE_LINK
 import br.com.spolaorthays.filmoteca.shared.model.Constants.HEIGHT_SIZE
 import br.com.spolaorthays.filmoteca.shared.model.Constants.WIDTH_SIZE
@@ -46,8 +44,8 @@ class DetailActivity : DaggerAppCompatActivity() {
                     Picasso.get()
                         .load("$BASE_IMAGE_LINK${it.posterImagePath}")
                         .resize(WIDTH_SIZE, HEIGHT_SIZE)
-                        //TODO precisaria levar para o shared para reutilizar esse progress aqui
-                        //.placeholder(R.drawable.animated_progress)
+                        //TODO Problema do shared resolvido, agora posso migrar todas as imagens pro shared
+                        .placeholder(Rshared.drawable.loading_progress_2)
                         .into(binding.detailsPoster)
                     setupRecyclerView(it.genres)
                 }
