@@ -52,7 +52,7 @@ class DetailActivity : DaggerAppCompatActivity() {
                     setupRecyclerView(movie.genres)
                     binding.detailsDescription.text =
                         movie.movieDescription.ifEmpty { getString(R.string.no_description) }
-                    val releaseDate = movie.releaseDate.formatBRDate()
+                    val releaseDate = formatBRDate(movie.releaseDate)
                     binding.detailsDebut.text =
                         String.format(getString(R.string.release_date_text), releaseDate)
                     //Produtoras
