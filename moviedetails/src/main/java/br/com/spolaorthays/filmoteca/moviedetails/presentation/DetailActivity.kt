@@ -9,6 +9,7 @@ import br.com.spolaorthays.filmoteca.shared.R as Rshared
 import br.com.spolaorthays.filmoteca.moviedetails.databinding.ActivityDetailBinding
 import br.com.spolaorthays.filmoteca.moviedetails.presentation.adapter.DetailsGenreRecyclerViewAdapter
 import br.com.spolaorthays.filmoteca.shared.extensions.formatBRDate
+import br.com.spolaorthays.filmoteca.shared.extensions.formatDollar
 import br.com.spolaorthays.filmoteca.shared.model.Constants.BASE_IMAGE_LINK
 import br.com.spolaorthays.filmoteca.shared.model.Constants.POST_HEIGHT_DETAIL_SIZE
 import br.com.spolaorthays.filmoteca.shared.model.Constants.POST_WIDTH_DETAIL_SIZE
@@ -55,8 +56,8 @@ class DetailActivity : DaggerAppCompatActivity() {
                     val releaseDate = formatBRDate(movie.releaseDate)
                     binding.detailsDebut.text =
                         String.format(getString(R.string.release_date_text), releaseDate)
-                    //Produtoras
-                    //orçamento (colocar cifrão)
+                    binding.detailsBudget.detailsBudgetValue.text = formatDollar(movie.budget)
+                    //todo Add Produtoras
                     setupVotes(movie.voteAverage)
                 }
             }

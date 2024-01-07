@@ -57,6 +57,13 @@
             android:textSize="20sp"/>
 
         <include
+            android:id="@+id/detailsBudget"
+            layout="@layout/budget_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <include
             android:id="@+id/starLayout"
             layout="@layout/vote_star_items"
             android:layout_width="match_parent"

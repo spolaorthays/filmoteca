@@ -23,4 +23,7 @@ object Constants {
 
     // Base image url
     const val BASE_IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
+
+    // Error or Invalid data
+    const val NOT_AVAILABLE = "Não disponível"
 }
