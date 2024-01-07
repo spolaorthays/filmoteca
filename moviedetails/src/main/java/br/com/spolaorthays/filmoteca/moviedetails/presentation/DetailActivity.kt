@@ -48,9 +48,9 @@ class DetailActivity : DaggerAppCompatActivity() {
                         .placeholder(Rshared.drawable.loading_progress_2)
                         .into(binding.detailsPoster)
                     setupRecyclerView(movie.genres)
-                    binding.detailsDescription.text = movie.movieDescription
+                    binding.detailsDescription.text =
+                        movie.movieDescription.ifEmpty { "Sem descrição no momento :(" }
                     //Data de estreia
-                    //nota em forma de estrelas
                     //Produtoras
                     //orçamento (colocar cifrão)
                     setupVotes(movie.voteAverage)
@@ -74,83 +74,83 @@ class DetailActivity : DaggerAppCompatActivity() {
         when {
 
             adjustAverage <= 0.7 -> { //meio
-                populateMiddleStar(binding.voteStar1)
-                populateFullOrEmptyStar(binding.voteStar2, false)
-                populateFullOrEmptyStar(binding.voteStar3, false)
-                populateFullOrEmptyStar(binding.voteStar4, false)
-                populateFullOrEmptyStar(binding.voteStar5, false)
+                populateMiddleStar(binding.starLayout.voteStar1)
+                populateFullOrEmptyStar(binding.starLayout.voteStar2, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar3, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar4, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar5, false)
             }
 
             adjustAverage > 0.7 && adjustAverage <= 1.2 -> { //1
-                populateFullOrEmptyStar(binding.voteStar1, true)
-                populateFullOrEmptyStar(binding.voteStar2, false)
-                populateFullOrEmptyStar(binding.voteStar3, false)
-                populateFullOrEmptyStar(binding.voteStar4, false)
-                populateFullOrEmptyStar(binding.voteStar5, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar1, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar2, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar3, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar4, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar5, false)
             }
 
             adjustAverage > 1.2 && adjustAverage <= 1.7 -> { //1 e meio
-                populateFullOrEmptyStar(binding.voteStar1, true)
-                populateMiddleStar(binding.voteStar2)
-                populateFullOrEmptyStar(binding.voteStar3, false)
-                populateFullOrEmptyStar(binding.voteStar4, false)
-                populateFullOrEmptyStar(binding.voteStar5, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar1, true)
+                populateMiddleStar(binding.starLayout.voteStar2)
+                populateFullOrEmptyStar(binding.starLayout.voteStar3, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar4, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar5, false)
             }
 
             adjustAverage > 1.7 && adjustAverage <= 2.2 -> { //2
-                populateFullOrEmptyStar(binding.voteStar1, true)
-                populateFullOrEmptyStar(binding.voteStar2, true)
-                populateFullOrEmptyStar(binding.voteStar3, false)
-                populateFullOrEmptyStar(binding.voteStar4, false)
-                populateFullOrEmptyStar(binding.voteStar5, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar1, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar2, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar3, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar4, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar5, false)
             }
 
             adjustAverage > 2.2 && adjustAverage <= 2.7 -> { //2 e meio
-                populateFullOrEmptyStar(binding.voteStar1, true)
-                populateFullOrEmptyStar(binding.voteStar2, true)
-                populateMiddleStar(binding.voteStar3)
-                populateFullOrEmptyStar(binding.voteStar4, false)
-                populateFullOrEmptyStar(binding.voteStar5, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar1, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar2, true)
+                populateMiddleStar(binding.starLayout.voteStar3)
+                populateFullOrEmptyStar(binding.starLayout.voteStar4, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar5, false)
             }
 
             adjustAverage > 2.7 && adjustAverage <= 3.2 -> { //3
-                populateFullOrEmptyStar(binding.voteStar1, true)
-                populateFullOrEmptyStar(binding.voteStar2, true)
-                populateFullOrEmptyStar(binding.voteStar3, true)
-                populateFullOrEmptyStar(binding.voteStar4, false)
-                populateFullOrEmptyStar(binding.voteStar5, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar1, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar2, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar3, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar4, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar5, false)
             }
 
             adjustAverage > 3.2 && adjustAverage <= 3.7 -> { //3 e meio
-                populateFullOrEmptyStar(binding.voteStar1, true)
-                populateFullOrEmptyStar(binding.voteStar2, true)
-                populateFullOrEmptyStar(binding.voteStar3, true)
-                populateMiddleStar(binding.voteStar4)
-                populateFullOrEmptyStar(binding.voteStar5, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar1, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar2, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar3, true)
+                populateMiddleStar(binding.starLayout.voteStar4)
+                populateFullOrEmptyStar(binding.starLayout.voteStar5, false)
             }
 
             adjustAverage > 3.7 && adjustAverage <= 4.2 -> { //4
-                populateFullOrEmptyStar(binding.voteStar1, true)
-                populateFullOrEmptyStar(binding.voteStar2, true)
-                populateFullOrEmptyStar(binding.voteStar3, true)
-                populateFullOrEmptyStar(binding.voteStar4, true)
-                populateFullOrEmptyStar(binding.voteStar5, false)
+                populateFullOrEmptyStar(binding.starLayout.voteStar1, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar2, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar3, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar4, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar5, false)
             }
 
             adjustAverage > 4.2 && adjustAverage <= 4.7 -> { //4 e meio
-                populateFullOrEmptyStar(binding.voteStar1, true)
-                populateFullOrEmptyStar(binding.voteStar2, true)
-                populateFullOrEmptyStar(binding.voteStar3, true)
-                populateFullOrEmptyStar(binding.voteStar4, true)
-                populateMiddleStar(binding.voteStar5)
+                populateFullOrEmptyStar(binding.starLayout.voteStar1, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar2, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar3, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar4, true)
+                populateMiddleStar(binding.starLayout.voteStar5)
             }
 
             adjustAverage > 4.7 -> {
-                populateFullOrEmptyStar(binding.voteStar1, true)
-                populateFullOrEmptyStar(binding.voteStar2, true)
-                populateFullOrEmptyStar(binding.voteStar3, true)
-                populateFullOrEmptyStar(binding.voteStar4, true)
-                populateFullOrEmptyStar(binding.voteStar5, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar1, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar2, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar3, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar4, true)
+                populateFullOrEmptyStar(binding.starLayout.voteStar5, true)
             }
         }
     }

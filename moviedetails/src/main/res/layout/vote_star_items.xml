@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/voteStar1"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/voteStar2"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/voteStar3"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/voteStar4"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/voteStar5"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+</LinearLayout>
