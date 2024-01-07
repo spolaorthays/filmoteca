@@ -48,6 +48,14 @@
             android:layout_marginBottom="16dp"
             android:visibility="gone" />
 
+        <TextView
+            android:id="@+id/detailsDebut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
         <include
             android:id="@+id/starLayout"
             layout="@layout/vote_star_items"

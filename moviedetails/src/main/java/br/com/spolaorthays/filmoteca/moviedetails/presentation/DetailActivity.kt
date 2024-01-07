@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.GridLayoutManager
+import br.com.spolaorthays.filmoteca.moviedetails.R
 import br.com.spolaorthays.filmoteca.shared.R as Rshared
 import br.com.spolaorthays.filmoteca.moviedetails.databinding.ActivityDetailBinding
 import br.com.spolaorthays.filmoteca.moviedetails.presentation.adapter.DetailsGenreRecyclerViewAdapter
+import br.com.spolaorthays.filmoteca.shared.extensions.formatBRDate
 import br.com.spolaorthays.filmoteca.shared.model.Constants.BASE_IMAGE_LINK
 import br.com.spolaorthays.filmoteca.shared.model.Constants.POST_HEIGHT_DETAIL_SIZE
 import br.com.spolaorthays.filmoteca.shared.model.Constants.POST_WIDTH_DETAIL_SIZE
@@ -49,8 +51,10 @@ class DetailActivity : DaggerAppCompatActivity() {
                         .into(binding.detailsPoster)
                     setupRecyclerView(movie.genres)
                     binding.detailsDescription.text =
-                        movie.movieDescription.ifEmpty { "Sem descrição no momento :(" }
-                    //Data de estreia
+                        movie.movieDescription.ifEmpty { getString(R.string.no_description) }
+                    val releaseDate = movie.releaseDate.formatBRDate()
+                    binding.detailsDebut.text =
+                        String.format(getString(R.string.release_date_text), releaseDate)
                     //Produtoras
                     //orçamento (colocar cifrão)
                     setupVotes(movie.voteAverage)

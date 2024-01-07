@@ -1,1 +1,4 @@
-<resources></resources>
+<resources>
+    <string name="release_date_text">Data de estreia: %1$s</string>
+    <string name="no_description">"Sem descrição no momento :("</string>
+</resources>
