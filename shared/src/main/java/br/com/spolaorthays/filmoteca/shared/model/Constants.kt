@@ -16,8 +16,10 @@ object Constants {
     const val UPCOMING = "Em breve"
 
     // Posters sizes
-    const val WIDTH_SIZE = 400
-    const val HEIGHT_SIZE = 600
+    const val POST_WIDTH_LIST_SIZE = 400
+    const val POST_HEIGHT_LIST_SIZE = 600
+    const val POST_WIDTH_DETAIL_SIZE = 800
+    const val POST_HEIGHT_DETAIL_SIZE = 1200
 
     // Base image url
     const val BASE_IMAGE_LINK = "https://image.tmdb.org/t/p/original/"

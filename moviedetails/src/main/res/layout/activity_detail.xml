@@ -1,36 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    android:layout_margin="16dp"
     android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".moviedetails.presentation.DetailActivity">
+    tools:context=".presentation.DetailActivity">
 
-    <TextView
-        android:id="@+id/detailsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:layout_marginBottom="16dp"
-        tools:text="Movie Title"/>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/detailsPoster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="100dp"
-        android:minHeight="125dp"
-        android:layout_marginBottom="16dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/detailsGenreList"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/detailsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            tools:text="Movie Title" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/detailsPoster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:minWidth="100dp"
+            android:minHeight="125dp" />
+
+        <TextView
+            android:id="@+id/detailsDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            tools:text="Movie description" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detailsGenreList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/voteStar1"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/voteStar2"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/voteStar3"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/voteStar4"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/voteStar5"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.spolaorthays.filmoteca.movie.R
 import br.com.spolaorthays.filmoteca.movie.databinding.MovieContentItemBinding
 import br.com.spolaorthays.filmoteca.shared.model.Constants.BASE_IMAGE_LINK
-import br.com.spolaorthays.filmoteca.shared.model.Constants.HEIGHT_SIZE
-import br.com.spolaorthays.filmoteca.shared.model.Constants.WIDTH_SIZE
+import br.com.spolaorthays.filmoteca.shared.model.Constants.POST_HEIGHT_LIST_SIZE
+import br.com.spolaorthays.filmoteca.shared.model.Constants.POST_WIDTH_LIST_SIZE
 import br.com.spolaorthays.filmoteca.shared.model.Movie
 import com.squareup.picasso.Picasso
 
@@ -49,7 +49,7 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) :
                 }
                 Picasso.get()
                     .load("$BASE_IMAGE_LINK${movie.posterImagePath}")
-                    .resize(WIDTH_SIZE, HEIGHT_SIZE)
+                    .resize(POST_WIDTH_LIST_SIZE, POST_HEIGHT_LIST_SIZE)
                     .placeholder(R.drawable.animated_progress)
                     .into(posterImageView)
             }
