@@ -9,6 +9,7 @@ import br.com.spolaorthays.filmoteca.movie.domain.MovieInteractor
 import br.com.spolaorthays.filmoteca.movie.domain.MovieInteractorImpl
 import br.com.spolaorthays.filmoteca.movie.presentation.MainActivity
 import br.com.spolaorthays.filmoteca.movie.presentation.MovieViewModel
+import br.com.spolaorthays.filmoteca.shared.network.di.qualifiers.APIMovieDBQualifier
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -41,7 +42,7 @@ abstract class MovieContributesModule {
 
     companion object {
         @Provides
-        fun provideMovieService(retrofit: Retrofit): MovieService =
+        fun provideMovieService(@APIMovieDBQualifier retrofit: Retrofit): MovieService =
             retrofit.create(MovieService::class.java)
     }
 }
