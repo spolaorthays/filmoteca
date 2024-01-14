@@ -23,7 +23,7 @@ class MovieDetailViewModel @Inject constructor(
                 val getDetail = interactor.getMovieDetail(id).subscribeOn(appSchedulers.ioScheduler)
                 Single.just(Pair(it, getDetail.blockingGet()))
             }
-                    .subscribeOn(appSchedulers.ioScheduler)
+            .subscribeOn(appSchedulers.ioScheduler)
             .observeOn(appSchedulers.mainScheduler)
             .subscribeBy(
                 onSuccess = {
