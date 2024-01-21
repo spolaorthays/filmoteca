@@ -16,9 +16,10 @@ class MovieDetailViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val movieDetail = MutableLiveData<MovieDetail?>()
+    val budgetBrazil = MutableLiveData<String>()
 
     fun getDetails(id: Int) {
-        compositeDisposable += interactor.getDollarQuotation("'01-01-2023'", "'01-14-2024'", "json")
+        compositeDisposable += interactor.getDollarQuotation()
             .flatMap {
                 val getDetail = interactor.getMovieDetail(id).subscribeOn(appSchedulers.ioScheduler)
                 Single.just(Pair(it, getDetail.blockingGet()))
@@ -28,7 +29,7 @@ class MovieDetailViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = {
                     movieDetail.value = it.second
-                    it.first //TODO colocar em um livedata e levar essa conversão pro front
+                    budgetBrazil.value = it.first.purchaseQuotation
                 }, onError = {
                     it.message
                 })

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.spolaorthays.filmoteca.movie.R
+import br.com.spolaorthays.filmoteca.shared.R as Rshared
 import br.com.spolaorthays.filmoteca.movie.databinding.MovieContentItemBinding
 import br.com.spolaorthays.filmoteca.shared.model.Constants.BASE_IMAGE_LINK
 import br.com.spolaorthays.filmoteca.shared.model.Constants.POST_HEIGHT_LIST_SIZE
@@ -43,6 +43,7 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) :
                 title.text = movie.movieTitle
                 grade.text = movie.voteAverage.toString()
                 cardView.setOnClickListener {
+                    //TODO extrair para const ou strings
                     val deeplink = "thays://details?id=${movie.movieId}"
                     val intent = Intent(ACTION_VIEW, Uri.parse(deeplink))
                     it.context.startActivity(intent)
@@ -50,7 +51,7 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) :
                 Picasso.get()
                     .load("$BASE_IMAGE_LINK${movie.posterImagePath}")
                     .resize(POST_WIDTH_LIST_SIZE, POST_HEIGHT_LIST_SIZE)
-                    .placeholder(R.drawable.animated_progress)
+                    .placeholder(Rshared.drawable.animated_progress)
                     .into(posterImageView)
             }
         }

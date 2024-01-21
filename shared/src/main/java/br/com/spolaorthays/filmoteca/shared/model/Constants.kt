@@ -26,4 +26,12 @@ object Constants {
 
     // Error or Invalid data
     const val NOT_AVAILABLE = "Não disponível"
+
+    // Date Formats
+    const val MOVIE_API_FORMAT = "yyyy-MM-dd"
+    const val MY_PROJECT_FORMAT = "dd/MM/yyyy"
+    const val DOLLAR_API_REQUEST_FORMAT = "MM-dd-yyyy"
+
+    // API Format Response
+    const val JSON_FORMAT = "json"
 }
