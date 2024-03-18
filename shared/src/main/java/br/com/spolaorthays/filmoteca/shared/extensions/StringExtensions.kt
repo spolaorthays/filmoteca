@@ -18,6 +18,17 @@ fun formatDollar(budget: Long): String {
     }
 }
 
+fun formatReal(value: Double): String {
+    val numberFormatBR = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
+    val formatLongValue = numberFormatBR.format(value)
+    val finalValue = formatLongValue.substring(1, formatLongValue.length)
+    return if (finalValue == "0.00") {
+        NOT_AVAILABLE
+    } else {
+        finalValue
+    }
+}
+
 fun genericDateFormatter(date: String, originalFormat: String, neededFormat: String): String {
     val originalDateFormat = SimpleDateFormat(originalFormat, Locale.getDefault())
     val neededDateFormat = SimpleDateFormat(neededFormat, Locale.getDefault())

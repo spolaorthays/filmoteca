@@ -29,7 +29,10 @@ class MovieDetailViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = {
                     movieDetail.value = it.second
-                    budgetBrazil.value = it.first.purchaseQuotation
+                    budgetBrazil.value = interactor.calculatedRealValue(
+                        budget = it.second.budget,
+                        quotation = it.first.purchaseQuotation ?: ""
+                    )
                 }, onError = {
                     it.message
                 })

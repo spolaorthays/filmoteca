@@ -3,12 +3,14 @@ package br.com.spolaorthays.filmoteca.moviedetails.domain
 import androidx.annotation.VisibleForTesting
 import br.com.spolaorthays.filmoteca.moviedetails.data.MovieDetailRepository
 import br.com.spolaorthays.filmoteca.moviedetails.data.model.DollarData
+import br.com.spolaorthays.filmoteca.shared.extensions.formatReal
 import br.com.spolaorthays.filmoteca.shared.extensions.formatterCalendarDate
 import br.com.spolaorthays.filmoteca.shared.extensions.genericDateFormatter
 import br.com.spolaorthays.filmoteca.shared.model.Constants.DOLLAR_API_REQUEST_FORMAT
 import br.com.spolaorthays.filmoteca.shared.model.Constants.JSON_FORMAT
 import br.com.spolaorthays.filmoteca.shared.model.Constants.MOVIE_API_FORMAT
 import br.com.spolaorthays.filmoteca.shared.model.Constants.MY_PROJECT_FORMAT
+import br.com.spolaorthays.filmoteca.shared.model.Constants.NOT_AVAILABLE
 import br.com.spolaorthays.filmoteca.shared.model.MovieDetail
 import io.reactivex.Single
 import java.util.Calendar
@@ -19,6 +21,8 @@ interface MovieDetailInteractor {
     fun getMovieDetail(id: Int): Single<MovieDetail>
     fun getDollarQuotation(
     ): Single<DollarData>
+
+    fun calculatedRealValue(budget: Long, quotation: String): String
 }
 
 class MovieDetailInteractorImpl @Inject constructor(private val repository: MovieDetailRepository) :
@@ -43,6 +47,14 @@ class MovieDetailInteractorImpl @Inject constructor(private val repository: Movi
             format = JSON_FORMAT
         ).map {
             it.periodQuotation.last()
+        }
+    }
+    override fun calculatedRealValue(budget: Long, quotation: String): String {
+        val realValue = budget.toDouble() * quotation.toDouble()
+        return try {
+            formatReal(realValue)
+        } catch (e: Exception) {
+            NOT_AVAILABLE
         }
     }
 
