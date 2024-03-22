@@ -21,7 +21,7 @@ fun formatDollar(budget: Long): String {
 fun formatReal(value: Double): String {
     val numberFormatBR = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
     val formatLongValue = numberFormatBR.format(value)
-    val finalValue = formatLongValue.substring(3, formatLongValue.length)
+    val finalValue = formatLongValue.replace("R$ ", "")
     return if (finalValue == "0.00") {
         NOT_AVAILABLE
     } else {
