@@ -55,11 +55,12 @@ class DetailActivity : DaggerAppCompatActivity() {
                     binding.detailsDebut.text =
                         String.format(getString(R.string.release_date_text), details.releaseDate)
                     binding.detailsBudget.detailsBudgetValue.text = formatDollar(movie.budget)
-                    //TODO fazer a formatação para reais baseada na cotação do dolar diária
-                    binding.detailsBudget.detailsBudgetValueReal.text = "Em breve"
                     //todo Add Produtoras
                     setupVotes(movie.voteAverage)
                 }
+            }
+            budgetBrazil.observe(this@DetailActivity) { budget ->
+                binding.detailsBudget.detailsBudgetValueReal.text = budget
             }
         }
     }
