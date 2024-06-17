@@ -1,12 +1,15 @@
 package br.com.spolaorthays.filmoteca.moviedetails.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.spolaorthays.filmoteca.moviedetails.R
 import br.com.spolaorthays.filmoteca.shared.R as Rshared
 import br.com.spolaorthays.filmoteca.moviedetails.databinding.ActivityDetailBinding
+import br.com.spolaorthays.filmoteca.moviedetails.domain.MovieDetailState
+import br.com.spolaorthays.filmoteca.moviedetails.domain.QuotationState
 import br.com.spolaorthays.filmoteca.moviedetails.presentation.adapter.DetailsGenreRecyclerViewAdapter
 import br.com.spolaorthays.filmoteca.shared.extensions.formatDollar
 import br.com.spolaorthays.filmoteca.shared.model.Constants.BASE_IMAGE_LINK
@@ -41,26 +44,50 @@ class DetailActivity : DaggerAppCompatActivity() {
 
     private fun observeLiveData() {
         with(detailViewModel) {
-            movieDetail.observe(this@DetailActivity) { details ->
-                details?.let { movie ->
-                    binding.detailsTitle.text = movie.movieTitle
-                    Picasso.get()
-                        .load("$BASE_IMAGE_LINK${movie.posterImagePath}")
-                        .resize(POST_WIDTH_DETAIL_SIZE, POST_HEIGHT_DETAIL_SIZE)
-                        .placeholder(Rshared.drawable.animated_progress)
-                        .into(binding.detailsPoster)
-                    setupRecyclerView(movie.genres)
-                    binding.detailsDescription.text =
-                        movie.movieDescription.ifEmpty { getString(R.string.no_description) }
-                    binding.detailsDebut.text =
-                        String.format(getString(R.string.release_date_text), details.releaseDate)
-                    binding.detailsBudget.detailsBudgetValue.text = formatDollar(movie.budget)
-                    //todo Add Produtoras
-                    setupVotes(movie.voteAverage)
+            movieDetailState.observe(this@DetailActivity) { state ->
+                when (state) {
+                    is MovieDetailState.SuccessDetails -> {
+                        getQuotation(state.budget)
+
+                        state.details.also { movie ->
+                            binding.detailsTitle.text = movie.movieTitle
+                            Picasso.get()
+                                .load("$BASE_IMAGE_LINK${movie.posterImagePath}")
+                                .resize(POST_WIDTH_DETAIL_SIZE, POST_HEIGHT_DETAIL_SIZE)
+                                .placeholder(Rshared.drawable.animated_progress)
+                                .into(binding.detailsPoster)
+                            setupRecyclerView(movie.genres)
+                            binding.detailsDescription.text =
+                                movie.movieDescription.ifEmpty { getString(R.string.no_description) }
+                            binding.detailsDebut.text =
+                                String.format(
+                                    getString(R.string.release_date_text),
+                                    movie.releaseDate
+                                )
+                            binding.detailsBudget.detailsBudgetValue.text =
+                                formatDollar(movie.budget)
+                            //todo Add Produtoras
+                            setupVotes(movie.voteAverage)
+                        }
+                    }
+
+                    is MovieDetailState.Loading -> {}
+                    is MovieDetailState.Error -> {}
                 }
             }
-            budgetBrazil.observe(this@DetailActivity) { budget ->
-                binding.detailsBudget.detailsBudgetValueReal.text = budget
+            quotationState.observe(this@DetailActivity) { state ->
+                when (state) {
+                    is QuotationState.Success -> {
+                        calculateBudgetToReal(budget = state.budget, dollarData = state.dollarData)
+                    }
+
+                    is QuotationState.ConvertedQuotation -> {
+                        binding.detailsBudget.detailsBudgetValueReal.text = state.budgetBrazil
+                    }
+
+                    is QuotationState.Loading -> {}
+                    is QuotationState.Error -> {}
+                }
             }
         }
     }

@@ -18,37 +18,39 @@ import java.util.Locale
 import javax.inject.Inject
 
 interface MovieDetailInteractor {
-    fun getMovieDetail(id: Int): Single<MovieDetail>
-    fun getDollarQuotation(
-    ): Single<DollarData>
-
+    fun getMovieDetail(id: Int): Single<MovieDetailState>
+    fun getDollarQuotation(budget: Long): Single<QuotationState>
     fun calculatedRealValue(budget: Long, quotation: String): String
 }
 
 class MovieDetailInteractorImpl @Inject constructor(private val repository: MovieDetailRepository) :
     MovieDetailInteractor {
-    override fun getMovieDetail(id: Int): Single<MovieDetail> {
+    override fun getMovieDetail(id: Int): Single<MovieDetailState> {
         return repository.getMovieDetail(id).map { movieDetail ->
-            movieDetail.copy(
-                releaseDate = genericDateFormatter(
-                    date = movieDetail.releaseDate,
-                    originalFormat = MOVIE_API_FORMAT,
-                    neededFormat = MY_PROJECT_FORMAT
-                )
+            MovieDetailState.SuccessDetails(
+                details = movieDetail.copy(
+                    releaseDate = genericDateFormatter(
+                        date = movieDetail.releaseDate,
+                        originalFormat = MOVIE_API_FORMAT,
+                        neededFormat = MY_PROJECT_FORMAT
+                    )
+                ),
+                budget = movieDetail.budget
             )
         }
     }
 
-    override fun getDollarQuotation(): Single<DollarData> {
+    override fun getDollarQuotation(budget: Long): Single<QuotationState> {
         val datesQuotation = getDatesToQuotation()
         return repository.getDollarQuotation(
             initialData = datesQuotation.first,
             finalData = datesQuotation.second,
             format = JSON_FORMAT
         ).map {
-            it.periodQuotation.last()
+            QuotationState.Success(dollarData = it.periodQuotation.last(), budget = budget)
         }
     }
+
     override fun calculatedRealValue(budget: Long, quotation: String): String {
         val realValue = budget.toDouble() * quotation.toDouble()
         return try {

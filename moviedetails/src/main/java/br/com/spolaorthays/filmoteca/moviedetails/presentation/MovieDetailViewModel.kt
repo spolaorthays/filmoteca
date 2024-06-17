@@ -1,11 +1,12 @@
 package br.com.spolaorthays.filmoteca.moviedetails.presentation
 
 import androidx.lifecycle.MutableLiveData
+import br.com.spolaorthays.filmoteca.moviedetails.data.model.DollarData
 import br.com.spolaorthays.filmoteca.moviedetails.domain.MovieDetailInteractor
-import br.com.spolaorthays.filmoteca.shared.model.MovieDetail
+import br.com.spolaorthays.filmoteca.moviedetails.domain.MovieDetailState
+import br.com.spolaorthays.filmoteca.moviedetails.domain.QuotationState
 import br.com.spolaorthays.filmoteca.shared.schedulers.AppSchedulers
 import br.com.spolaorthays.filmoteca.shared.viewmodel.BaseViewModel
-import io.reactivex.Single
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
@@ -15,26 +16,47 @@ class MovieDetailViewModel @Inject constructor(
     private val appSchedulers: AppSchedulers
 ) : BaseViewModel() {
 
-    val movieDetail = MutableLiveData<MovieDetail?>()
-    val budgetBrazil = MutableLiveData<String>()
+    val movieDetailState = MutableLiveData<MovieDetailState>()
+    val quotationState = MutableLiveData<QuotationState>()
 
     fun getDetails(id: Int) {
-        compositeDisposable += interactor.getDollarQuotation()
-            .flatMap {
-                val getDetail = interactor.getMovieDetail(id).subscribeOn(appSchedulers.ioScheduler)
-                Single.just(Pair(it, getDetail.blockingGet()))
-            }
-            .subscribeOn(appSchedulers.ioScheduler)
+        compositeDisposable += interactor.getMovieDetail(id)
             .observeOn(appSchedulers.mainScheduler)
+            .subscribeOn(appSchedulers.ioScheduler)
+            .doOnSubscribe {
+                movieDetailState.value = MovieDetailState.Loading
+            }
             .subscribeBy(
                 onSuccess = {
-                    movieDetail.value = it.second
-                    budgetBrazil.value = interactor.calculatedRealValue(
-                        budget = it.second.budget,
-                        quotation = it.first.purchaseQuotation ?: ""
-                    )
+                    movieDetailState.value = it
                 }, onError = {
-                    it.message
+                    movieDetailState.value =
+                        it.message?.let { message -> MovieDetailState.Error(message = message) }
                 })
     }
+
+    fun getQuotation(budget: Long) {
+        compositeDisposable += interactor.getDollarQuotation(budget)
+            .observeOn(appSchedulers.mainScheduler)
+            .subscribeOn(appSchedulers.ioScheduler)
+            .doOnSubscribe {
+                quotationState.value = QuotationState.Loading
+            }
+            .subscribeBy(
+                onSuccess = {
+                    quotationState.value = it
+                }, onError = {
+                    quotationState.value =
+                        it.message?.let { message -> QuotationState.Error(message = message) }
+                })
+    }
+
+    fun calculateBudgetToReal(budget: Long, dollarData: DollarData) {
+        val value = interactor.calculatedRealValue(
+            budget = budget,
+            quotation = dollarData.purchaseQuotation ?: ""
+        )
+        quotationState.value = QuotationState.ConvertedQuotation(budgetBrazil = value)
+    }
+
 }
