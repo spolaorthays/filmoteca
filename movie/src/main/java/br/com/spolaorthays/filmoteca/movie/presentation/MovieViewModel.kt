@@ -5,6 +5,9 @@ import br.com.spolaorthays.filmoteca.shared.model.Movie
 import br.com.spolaorthays.filmoteca.shared.schedulers.AppSchedulers
 import br.com.spolaorthays.filmoteca.shared.viewmodel.BaseViewModel
 import br.com.spolaorthays.filmoteca.movie.domain.MovieInteractor
+import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState.NextSession
+import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState.SuccessAllMovieList
+import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
@@ -15,25 +18,37 @@ class MovieViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val movies = mutableListOf<List<Movie>>()
-    val allMovies = MutableLiveData<MutableList<List<Movie>>>()
-    val endpointList = MutableLiveData<List<String>>()
+    private var endpointListSize: Int = 0
     val sessionList = MutableLiveData<List<String>>()
+    val movieState = MutableLiveData<MovieState>()
 
-    fun getMovieSessions(url: String) {
+    fun getMovieSessions(url: String, position: Int) {
         compositeDisposable += interactor.getMovies(url)
             .subscribeOn(appSchedulers.ioScheduler)
             .observeOn(appSchedulers.mainScheduler)
             .subscribeBy(
                 onSuccess = {
                     movies.add(it)
-                    allMovies.postValue(movies)
+                    getAllMovies(movies, position)
                 }, onError = {
                     it.message
                 })
     }
 
-    fun getEndpointSession() {
-        endpointList.value = interactor.getEndpointList()
+    private fun getAllMovies(movieList: MutableList<List<Movie>>, position: Int) {
+        if (movieList.size == endpointListSize) {
+            movieState.value = SuccessAllMovieList(completeList = movieList)
+        } else {
+            movieState.value = NextSession(next = position + 1)
+        }
+    }
+
+    fun getEndpointSession(): List<String> {
+        val endpointList = interactor.getEndpointList()
+        endpointListSize = endpointList.size
         sessionList.value = interactor.getSessionList()
+        movieState.value = MovieState.Loading
+
+        return endpointList
     }
 }

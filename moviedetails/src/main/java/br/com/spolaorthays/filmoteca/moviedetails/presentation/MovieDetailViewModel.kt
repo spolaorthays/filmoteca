@@ -3,8 +3,8 @@ package br.com.spolaorthays.filmoteca.moviedetails.presentation
 import androidx.lifecycle.MutableLiveData
 import br.com.spolaorthays.filmoteca.moviedetails.data.model.DollarData
 import br.com.spolaorthays.filmoteca.moviedetails.domain.MovieDetailInteractor
-import br.com.spolaorthays.filmoteca.moviedetails.domain.MovieDetailState
-import br.com.spolaorthays.filmoteca.moviedetails.domain.QuotationState
+import br.com.spolaorthays.filmoteca.moviedetails.domain.states.MovieDetailState
+import br.com.spolaorthays.filmoteca.moviedetails.domain.states.QuotationState
 import br.com.spolaorthays.filmoteca.shared.schedulers.AppSchedulers
 import br.com.spolaorthays.filmoteca.shared.viewmodel.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign

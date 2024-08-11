@@ -1,4 +1,4 @@
-package br.com.spolaorthays.filmoteca.moviedetails.domain
+package br.com.spolaorthays.filmoteca.moviedetails.domain.states
 
 import br.com.spolaorthays.filmoteca.moviedetails.data.model.DollarData
 

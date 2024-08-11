@@ -2,7 +2,8 @@ package br.com.spolaorthays.filmoteca.moviedetails.domain
 
 import androidx.annotation.VisibleForTesting
 import br.com.spolaorthays.filmoteca.moviedetails.data.MovieDetailRepository
-import br.com.spolaorthays.filmoteca.moviedetails.data.model.DollarData
+import br.com.spolaorthays.filmoteca.moviedetails.domain.states.MovieDetailState
+import br.com.spolaorthays.filmoteca.moviedetails.domain.states.QuotationState
 import br.com.spolaorthays.filmoteca.shared.extensions.formatReal
 import br.com.spolaorthays.filmoteca.shared.extensions.formatterCalendarDate
 import br.com.spolaorthays.filmoteca.shared.extensions.genericDateFormatter
@@ -11,7 +12,6 @@ import br.com.spolaorthays.filmoteca.shared.model.Constants.JSON_FORMAT
 import br.com.spolaorthays.filmoteca.shared.model.Constants.MOVIE_API_FORMAT
 import br.com.spolaorthays.filmoteca.shared.model.Constants.MY_PROJECT_FORMAT
 import br.com.spolaorthays.filmoteca.shared.model.Constants.NOT_AVAILABLE
-import br.com.spolaorthays.filmoteca.shared.model.MovieDetail
 import io.reactivex.Single
 import java.util.Calendar
 import java.util.Locale

@@ -1,15 +1,14 @@
 package br.com.spolaorthays.filmoteca.moviedetails.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.spolaorthays.filmoteca.moviedetails.R
 import br.com.spolaorthays.filmoteca.shared.R as Rshared
 import br.com.spolaorthays.filmoteca.moviedetails.databinding.ActivityDetailBinding
-import br.com.spolaorthays.filmoteca.moviedetails.domain.MovieDetailState
-import br.com.spolaorthays.filmoteca.moviedetails.domain.QuotationState
+import br.com.spolaorthays.filmoteca.moviedetails.domain.states.MovieDetailState
+import br.com.spolaorthays.filmoteca.moviedetails.domain.states.QuotationState
 import br.com.spolaorthays.filmoteca.moviedetails.presentation.adapter.DetailsGenreRecyclerViewAdapter
 import br.com.spolaorthays.filmoteca.shared.extensions.formatDollar
 import br.com.spolaorthays.filmoteca.shared.model.Constants.BASE_IMAGE_LINK
