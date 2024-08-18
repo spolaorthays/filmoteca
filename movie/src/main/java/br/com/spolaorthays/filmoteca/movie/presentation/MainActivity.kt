@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.spolaorthays.filmoteca.movie.databinding.ActivityMainBinding
+import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState.Loading
+import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState.NextSession
+import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState.SuccessAllMovieList
+import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState.Error
 import br.com.spolaorthays.filmoteca.shared.model.Movie
 import br.com.spolaorthays.filmoteca.movie.presentation.adapter.MovieContainerAdapter
 import dagger.android.support.DaggerAppCompatActivity
@@ -12,6 +16,7 @@ import javax.inject.Inject
 class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var endpointList: List<String>
 
     @Inject
     lateinit var movieViewModel: MovieViewModel
@@ -21,26 +26,29 @@ class MainActivity : DaggerAppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        movieViewModel.getEndpointSession()
+        endpointList = movieViewModel.getEndpointSession()
 
         observerLiveDatas()
     }
 
     private fun observerLiveDatas() {
         with(movieViewModel) {
-            endpointList.observe(this@MainActivity) { endpoints ->
-                endpoints.forEach { endpoint ->
-                    movieViewModel.getMovieSessions(endpoint)
+            movieState.observe(this@MainActivity) { state ->
+                when(state) {
+                    is Loading -> {
+                        binding.loadingImage.visibility = View.VISIBLE
+                        movieViewModel.getMovieSessions(endpointList[0], position = 0)
+                    }
+                    is NextSession -> {
+                        movieViewModel.getMovieSessions(endpointList[state.next], position = state.next)
+                    }
+                    is SuccessAllMovieList -> {
+                        binding.loadingImage.visibility = View.GONE
+                        setupRecycler(state.completeList)
+                    }
+                    is Error -> {}
                 }
-            }
 
-            allMovies.observe(this@MainActivity) { lists ->
-                if (lists.size == endpointList.value?.size) {
-                    binding.loadingImage.visibility = View.GONE
-                    setupRecycler(lists)
-                } else {
-                    binding.loadingImage.visibility = View.VISIBLE
-                }
             }
         }
     }

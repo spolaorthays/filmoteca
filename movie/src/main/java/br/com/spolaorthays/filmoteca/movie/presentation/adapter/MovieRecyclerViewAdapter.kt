@@ -43,7 +43,6 @@ class MovieRecyclerViewAdapter(private var movies: List<Movie>) :
                 title.text = movie.movieTitle
                 grade.text = movie.voteAverage.toString()
                 cardView.setOnClickListener {
-                    //TODO extrair para const ou strings
                     val deeplink = "thays://details?id=${movie.movieId}"
                     val intent = Intent(ACTION_VIEW, Uri.parse(deeplink))
                     it.context.startActivity(intent)
