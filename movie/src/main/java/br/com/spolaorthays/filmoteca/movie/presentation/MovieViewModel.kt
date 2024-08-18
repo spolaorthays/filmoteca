@@ -1,6 +1,7 @@
 package br.com.spolaorthays.filmoteca.movie.presentation
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import br.com.spolaorthays.filmoteca.shared.model.Movie
 import br.com.spolaorthays.filmoteca.shared.schedulers.AppSchedulers
 import br.com.spolaorthays.filmoteca.shared.viewmodel.BaseViewModel
@@ -8,8 +9,7 @@ import br.com.spolaorthays.filmoteca.movie.domain.MovieInteractor
 import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState.NextSession
 import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState.SuccessAllMovieList
 import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState
-import io.reactivex.rxkotlin.plusAssign
-import io.reactivex.rxkotlin.subscribeBy
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MovieViewModel @Inject constructor(
@@ -23,16 +23,11 @@ class MovieViewModel @Inject constructor(
     val movieState = MutableLiveData<MovieState>()
 
     fun getMovieSessions(url: String, position: Int) {
-        compositeDisposable += interactor.getMovies(url)
-            .subscribeOn(appSchedulers.ioScheduler)
-            .observeOn(appSchedulers.mainScheduler)
-            .subscribeBy(
-                onSuccess = {
-                    movies.add(it)
-                    getAllMovies(movies, position)
-                }, onError = {
-                    it.message
-                })
+        viewModelScope.launch {
+            val movieList = interactor.getMovies(url)
+            movies.add(movieList)
+            getAllMovies(movies, position)
+        }
     }
 
     private fun getAllMovies(movieList: MutableList<List<Movie>>, position: Int) {

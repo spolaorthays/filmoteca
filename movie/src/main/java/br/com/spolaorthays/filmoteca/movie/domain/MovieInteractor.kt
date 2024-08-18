@@ -10,11 +10,10 @@ import br.com.spolaorthays.filmoteca.shared.model.Constants.POPULARS
 import br.com.spolaorthays.filmoteca.shared.model.Constants.TOP_RATED
 import br.com.spolaorthays.filmoteca.shared.model.Constants.UPCOMING
 import br.com.spolaorthays.filmoteca.shared.model.Movie
-import io.reactivex.Single
 import javax.inject.Inject
 
 interface MovieInteractor {
-    fun getMovies(url: String): Single<List<Movie>>
+    suspend fun getMovies(url: String): List<Movie>
     fun getEndpointList(): List<String>
     fun getSessionList(): List<String>
 }
@@ -22,10 +21,8 @@ interface MovieInteractor {
 class MovieInteractorImpl @Inject constructor(private val repository: MovieRepository) :
     MovieInteractor {
 
-    override fun getMovies(url: String): Single<List<Movie>> {
-        return repository.getAllMovies(url).map {
-            it.results
-        }
+    override suspend fun getMovies(url: String): List<Movie> {
+        return repository.getAllMovies(url).results
     }
 
     override fun getEndpointList(): List<String> {

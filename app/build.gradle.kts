@@ -75,6 +75,10 @@ dependencies {
     implementation(Dependencies.RxJava.rxjavaKotlin)
     implementation(Dependencies.RxJava.rxjavaAdapterJake)
 
+    // Coroutines
+    implementation(Dependencies.Coroutines.coroutinesCore)
+    implementation(Dependencies.Coroutines.coroutinesAndroid)
+
     // Test
     testImplementation(Dependencies.Tests.junit)
     androidTestImplementation(Dependencies.Tests.testJunit)

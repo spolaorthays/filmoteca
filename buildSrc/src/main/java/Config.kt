@@ -1,7 +1,7 @@
 object Config {
-    const val compileVersion = 33
+    const val compileVersion = 34
     const val minSdkVersion = 21
-    const val targetVersion = 33
+    const val targetVersion = 34
     const val versionCode = 1
     const val versionsName = "1.0"
     const val applicationId = "br.com.spolaorthays.filmoteca"
