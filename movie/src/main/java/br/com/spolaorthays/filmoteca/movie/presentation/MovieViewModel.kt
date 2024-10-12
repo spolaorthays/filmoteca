@@ -3,7 +3,6 @@ package br.com.spolaorthays.filmoteca.movie.presentation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import br.com.spolaorthays.filmoteca.shared.model.Movie
-import br.com.spolaorthays.filmoteca.shared.schedulers.AppSchedulers
 import br.com.spolaorthays.filmoteca.shared.viewmodel.BaseViewModel
 import br.com.spolaorthays.filmoteca.movie.domain.MovieInteractor
 import br.com.spolaorthays.filmoteca.movie.domain.states.MovieState.NextSession
@@ -14,7 +13,6 @@ import javax.inject.Inject
 
 class MovieViewModel @Inject constructor(
     private val interactor: MovieInteractor,
-    private val appSchedulers: AppSchedulers
 ) : BaseViewModel() {
 
     private val movies = mutableListOf<List<Movie>>()

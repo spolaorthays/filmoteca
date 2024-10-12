@@ -1,26 +1,25 @@
 package br.com.spolaorthays.filmoteca.shared.schedulers.di
 
-import br.com.spolaorthays.filmoteca.shared.schedulers.AppSchedulers
+import br.com.spolaorthays.filmoteca.shared.schedulers.AppCoroutineDispatcher
 import br.com.spolaorthays.filmoteca.shared.schedulers.di.qualifier.ComputationSchedulerQualifier
 import br.com.spolaorthays.filmoteca.shared.schedulers.di.qualifier.IoSchedulerQualifier
 import br.com.spolaorthays.filmoteca.shared.schedulers.di.qualifier.MainSchedulerQualifier
 import dagger.Module
 import dagger.Provides
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 @Module
-class AppSchedulerModule {
+class AppCoroutineModule {
 
     @Singleton
     @Provides
     fun provideSchedulers(
-        @MainSchedulerQualifier mainScheduler: Scheduler,
-        @IoSchedulerQualifier ioScheduler: Scheduler,
-        @ComputationSchedulerQualifier computationScheduler: Scheduler
-    ) = AppSchedulers(
+        @MainSchedulerQualifier mainScheduler: CoroutineDispatcher,
+        @IoSchedulerQualifier ioScheduler: CoroutineDispatcher,
+        @ComputationSchedulerQualifier computationScheduler: CoroutineDispatcher
+    ) = AppCoroutineDispatcher(
         mainScheduler = mainScheduler,
         ioScheduler = ioScheduler,
         computation = computationScheduler
@@ -28,13 +27,13 @@ class AppSchedulerModule {
 
     @MainSchedulerQualifier
     @Provides
-    fun provideMainThread(): Scheduler = AndroidSchedulers.mainThread()
+    fun provideMainThread(): CoroutineDispatcher = Dispatchers.Main
 
     @IoSchedulerQualifier
     @Provides
-    fun provideIoThread(): Scheduler = Schedulers.io()
+    fun provideIoThread(): CoroutineDispatcher = Dispatchers.IO
 
     @ComputationSchedulerQualifier
     @Provides
-    fun provideComputationThread(): Scheduler = Schedulers.computation()
+    fun provideComputationThread(): CoroutineDispatcher = Dispatchers.Default
 }

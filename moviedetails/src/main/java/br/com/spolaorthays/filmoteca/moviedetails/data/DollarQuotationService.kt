@@ -10,9 +10,9 @@ interface DollarQuotationService {
     //https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial=%2701-01-2023%27&@dataFinalCotacao=%2701-14-2024%27&$format=json
 
     @GET("/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)")
-    fun getDollarQuotationByPeriod(
+    suspend fun getDollarQuotationByPeriod(
         @Query("@dataInicial") initialData: String,
         @Query("@dataFinalCotacao") finalData: String,
         @Query("\$format") format: String
-    ): Single<DollarPeriodQuotation>
+    ): DollarPeriodQuotation
 }

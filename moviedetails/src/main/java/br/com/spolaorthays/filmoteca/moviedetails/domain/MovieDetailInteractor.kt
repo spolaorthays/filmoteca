@@ -18,37 +18,35 @@ import java.util.Locale
 import javax.inject.Inject
 
 interface MovieDetailInteractor {
-    fun getMovieDetail(id: Int): Single<MovieDetailState>
-    fun getDollarQuotation(budget: Long): Single<QuotationState>
+    suspend fun getMovieDetail(id: Int): MovieDetailState
+    suspend fun getDollarQuotation(budget: Long): QuotationState
     fun calculatedRealValue(budget: Long, quotation: String): String
 }
 
 class MovieDetailInteractorImpl @Inject constructor(private val repository: MovieDetailRepository) :
     MovieDetailInteractor {
-    override fun getMovieDetail(id: Int): Single<MovieDetailState> {
-        return repository.getMovieDetail(id).map { movieDetail ->
-            MovieDetailState.SuccessDetails(
-                details = movieDetail.copy(
-                    releaseDate = genericDateFormatter(
-                        date = movieDetail.releaseDate,
-                        originalFormat = MOVIE_API_FORMAT,
-                        neededFormat = MY_PROJECT_FORMAT
-                    )
-                ),
-                budget = movieDetail.budget
-            )
-        }
+    override suspend fun getMovieDetail(id: Int): MovieDetailState {
+        val result = repository.getMovieDetail(id)
+
+        return MovieDetailState.SuccessDetails(
+            details = result.copy(
+                releaseDate = genericDateFormatter(
+                    date = result.releaseDate,
+                    originalFormat = MOVIE_API_FORMAT,
+                    neededFormat = MY_PROJECT_FORMAT
+                )
+            ), budget = result.budget
+        )
     }
 
-    override fun getDollarQuotation(budget: Long): Single<QuotationState> {
+    override suspend fun getDollarQuotation(budget: Long): QuotationState {
         val datesQuotation = getDatesToQuotation()
-        return repository.getDollarQuotation(
+        val result = repository.getDollarQuotation(
             initialData = datesQuotation.first,
             finalData = datesQuotation.second,
             format = JSON_FORMAT
-        ).map {
-            QuotationState.Success(dollarData = it.periodQuotation.last(), budget = budget)
-        }
+        )
+        return QuotationState.Success(dollarData = result.periodQuotation.last(), budget = budget)
     }
 
     override fun calculatedRealValue(budget: Long, quotation: String): String {

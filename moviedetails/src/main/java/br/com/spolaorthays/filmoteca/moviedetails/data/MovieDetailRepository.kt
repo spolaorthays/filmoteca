@@ -2,32 +2,37 @@ package br.com.spolaorthays.filmoteca.moviedetails.data
 
 import br.com.spolaorthays.filmoteca.moviedetails.data.model.DollarPeriodQuotation
 import br.com.spolaorthays.filmoteca.shared.model.MovieDetail
-import io.reactivex.Single
+import br.com.spolaorthays.filmoteca.shared.schedulers.AppCoroutineDispatcher
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 interface MovieDetailRepository {
-    fun getMovieDetail(id: Int): Single<MovieDetail>
+    suspend fun getMovieDetail(id: Int): MovieDetail
 
-    fun getDollarQuotation(
+    suspend fun getDollarQuotation(
         initialData: String,
         finalData: String,
         format: String
-    ): Single<DollarPeriodQuotation>
+    ): DollarPeriodQuotation
 }
 
 class MovieDetailRepositoryImpl @Inject constructor(
     private val service: MovieDetailService,
-    private val dollarService: DollarQuotationService
+    private val dollarService: DollarQuotationService,
+    private val dispatcher: AppCoroutineDispatcher,
 ) :
     MovieDetailRepository {
-    override fun getMovieDetail(id: Int): Single<MovieDetail> =
-        service.getMovieDetail(id)
+    override suspend fun getMovieDetail(id: Int): MovieDetail =
+        withContext(dispatcher.ioScheduler) {
+            service.getMovieDetail(id)
+        }
 
-    override fun getDollarQuotation(
+    override suspend fun getDollarQuotation(
         initialData: String,
         finalData: String,
         format: String
-    ): Single<DollarPeriodQuotation> =
+    ): DollarPeriodQuotation = withContext(dispatcher.ioScheduler) {
         dollarService.getDollarQuotationByPeriod(initialData, finalData, format)
+    }
 
 }

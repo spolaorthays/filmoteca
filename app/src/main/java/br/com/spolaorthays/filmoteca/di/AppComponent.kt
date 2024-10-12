@@ -3,7 +3,7 @@ package br.com.spolaorthays.filmoteca.di
 import android.app.Application
 import br.com.spolaorthays.filmoteca.di.splash.SplashModule
 import br.com.spolaorthays.filmoteca.shared.network.di.NetworkModule
-import br.com.spolaorthays.filmoteca.shared.schedulers.di.AppSchedulerModule
+import br.com.spolaorthays.filmoteca.shared.schedulers.di.AppCoroutineModule
 import br.com.spolaorthays.filmoteca.movie.di.MovieModule
 import br.com.spolaorthays.filmoteca.moviedetails.di.MovieDetailsModule
 import dagger.BindsInstance
@@ -19,7 +19,7 @@ import javax.inject.Singleton
         NetworkModule::class,
         MovieModule::class,
         SplashModule::class,
-        AppSchedulerModule::class,
+        AppCoroutineModule::class,
         MovieDetailsModule::class
     ]
 )
